@@ -2,10 +2,10 @@
   .navbar-inner
     .container-fluid
       .navbar-header
-        %a.navbar-brand{href: "#"} Флэшкарточкер
+        = link_to "Флэшкарточкер", root_path, class: "navbar-brand"
       %div
         %ul.nav.navbar-nav.navbar-right
           %li
-            %a{href: "#"} Все карточки
+            = link_to "Все карточки", cards_path
           %li
             %a{href: "#"} Добавить карточку
