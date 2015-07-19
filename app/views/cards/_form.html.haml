@@ -1,0 +1,11 @@
+.col-md-8
+  = simple_form_for @card do |f|
+    = f.input :original_text
+    = f.input :translated_text
+    - date_field = f.object.review_date || 3.days.from_now.to_date
+    = f.input :review_date,
+      as: :string,
+      input_html: { value: localize(date_field) }
+    = f.button :submit
+    %br/
+    %br/

@@ -1,0 +1,9 @@
+.col-md-8.col-md-offset-2
+  .panel.panel-primary
+    .panel-heading
+      %h3= "Новая карточка"
+    .panel-body
+      .row
+        = render "form"
+        .col-md-12
+          = link_to "Назад", cards_path

@@ -1,0 +1,14 @@
+ru:
+  simple_form:
+    "yes": "Да"
+    "no": "Нет"
+    required:
+      text: "обязательное поле"
+      mark: "*"
+    error_notification:
+      default_message: "Пожалуйста, исправьте ошибки, указанные ниже:"
+    labels:
+      card:
+        original_text: "Исходный текст"
+        translated_text: "Перевод текста"
+        review_date: "Дата пересмотра"

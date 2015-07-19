@@ -1,0 +1,12 @@
+.row
+  .col-md-12
+    - if notice
+      .alert.alert-info.fade.in{ role: "alert" }
+        %a.close{ "aria-label": "close", "data-dismiss": "alert", href: "#",
+        title: "close" } &times;
+        = notice
+    - if alert
+      .alert.alert-danger.fade.in
+        %a.close{ "aria-label": "close", "data-dismiss": "alert", href: "#",
+        title: "close" } &times;
+        = alert
