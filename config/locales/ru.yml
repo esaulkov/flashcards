@@ -99,7 +99,7 @@ ru:
         card:
           attributes:
             translated_text:
-              incorrect_translate: Исходный текст и перевод должны различаться
+              bad_translate: Исходный текст и перевод должны различаться
   Original text: Исходный текст
   Translated text: Перевод текста
   Review date: Дата пересмотра
