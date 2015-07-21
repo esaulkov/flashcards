@@ -3,10 +3,6 @@ class Card < ActiveRecord::Base
   validates :original_text, :translated_text, :review_date, presence: true
   validate :check_translate
 
-  def has_correct_translate?
-    original_text.mb_chars.downcase.strip != translated_text.mb_chars.downcase.strip
-  end
-
   protected
 
   def set_review_date
@@ -16,6 +12,6 @@ class Card < ActiveRecord::Base
   private
 
   def check_translate
-    errors.add(:translated_text, :bad_translate) unless has_correct_translate?
+    errors.add(:translated_text, :bad_translate) if original_text.mb_chars.downcase.strip == translated_text.mb_chars.downcase.strip
   end
 end
