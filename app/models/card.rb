@@ -12,6 +12,8 @@ class Card < ActiveRecord::Base
   private
 
   def check_translate
-    errors.add(:translated_text, :bad_translate) if original_text.mb_chars.downcase.strip == translated_text.mb_chars.downcase.strip
+    if original_text.mb_chars.downcase.strip == translated_text.mb_chars.downcase.strip
+      errors.add(:translated_text, :bad_translate)
+    end
   end
 end
