@@ -7,8 +7,9 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = render 'layouts/header'
+    = render 'shared/header'
     %section#container
+      = render "shared/flash"
       %header.clearfix
         %h1 Флэшкарточкер
       %section
