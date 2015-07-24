@@ -1,0 +1,20 @@
+.col-md-8.col-md-offset-2
+  .panel.panel-primary
+    .panel-heading
+      %h3= "Проверка знаний"
+    .panel-body
+      .row
+        .col-md-8
+          - if @card.present?
+            %h4= @card.translated_text
+            = simple_form_for @card, url: check_card_path(@card) do |f|
+              = f.input :id, as: :hidden
+              = f.label "Введите перевод:"
+              %br/
+              = text_field_tag :answer, nil, class: "form-control"
+              %br/
+              = f.button :submit, "Ответить", class: "btn-info"
+              = link_to "Не знаю", random_cards_path, class: "btn btn-warning"
+          - else
+            %p
+              Непроверенных карточек нет

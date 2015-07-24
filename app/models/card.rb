@@ -3,6 +3,13 @@ class Card < ActiveRecord::Base
   validates :original_text, :translated_text, :review_date, presence: true
   validate :check_translate
 
+  scope :expired, -> { where("review_date <= ?", Date.today) }
+  scope :random, -> { order("RANDOM()").take }
+
+  def check_answer(answer)
+    normalize(original_text) == normalize(answer)
+  end
+
   protected
 
   def set_review_date
@@ -12,8 +19,12 @@ class Card < ActiveRecord::Base
   private
 
   def check_translate
-    if original_text.mb_chars.downcase.strip == translated_text.mb_chars.downcase.strip
+    if normalize(original_text) == normalize(translated_text)
       errors.add(:translated_text, :bad_translate)
     end
+  end
+
+  def normalize(text)
+    text.mb_chars.downcase.strip
   end
 end
