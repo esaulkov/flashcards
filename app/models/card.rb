@@ -3,15 +3,15 @@ class Card < ActiveRecord::Base
   validates :original_text, :translated_text, :review_date, presence: true
   validate :check_translate
 
-  #scope :expired, -> { where("review_date <= ?", Date.today) }
-  scope :expired, -> { where("review_date <= ?", 2.days.from_now.to_date) }
+  scope :expired, -> { where("review_date <= ?", Date.today) }
   scope :random, -> { offset(rand(Card.count)) }
 
   def check_answer(answer)
     if normalize(original_text) == normalize(answer)
-      update_attributes(review_date: 3.days.from_now.to_date) and return true
+      update_attributes(review_date: 3.days.from_now.to_date) && return true
+    else
+      return false
     end
-    return false
   end
 
   protected
