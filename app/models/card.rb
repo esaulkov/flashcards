@@ -4,8 +4,7 @@ class Card < ActiveRecord::Base
   validates :original_text, :translated_text, :review_date, presence: true
   validate :check_translate
 
-  #scope :expired, -> { where("review_date <= ?", Date.today) }
-  scope :expired, -> { where("review_date <= ?", 2.days.from_now.to_date) }
+  scope :expired, -> { where("review_date <= ?", Date.today) }
   scope :random, -> { offset(rand(Card.expired.count)) }
 
   def check_answer(answer)
