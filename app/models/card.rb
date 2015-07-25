@@ -8,7 +8,7 @@ class Card < ActiveRecord::Base
 
   def check_answer(answer)
     if normalize(original_text) == normalize(answer)
-      update_attributes(review_date: 3.days.from_now.to_date) && return true
+      update_attributes(review_date: 3.days.from_now.to_date) and return true
     else
       return false
     end
