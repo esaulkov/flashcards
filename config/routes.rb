@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  root "cards#random"
+  root "reviews#new"
 
-  resources :cards do
-    get "random", on: :collection
-    patch "check", on: :member
-  end
+  resources :cards
+  resources :reviews, only: [:new, :create]
 end

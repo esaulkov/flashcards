@@ -37,22 +37,6 @@ class CardsController < ApplicationController
     redirect_to cards_path, notice: "Карточка удалена"
   end
 
-  def random
-    @card = Card.expired.random
-  end
-
-  def check
-    @card = Card.find(params[:card][:id])
-    if @card.check_answer(params[:answer])
-      @card.review_date = 3.days.from_now.to_date
-      @card.save
-      redirect_to random_cards_path, notice: "Верный ответ!"
-    else
-      flash[:error] = "Вы ошиблись! Правильный ответ - #{@card.original_text}"
-      redirect_to random_cards_path
-    end
-  end
-
   private
 
   def set_card
