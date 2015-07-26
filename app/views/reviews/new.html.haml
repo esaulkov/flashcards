@@ -1,0 +1,20 @@
+.col-md-8.col-md-offset-2
+  .panel.panel-primary
+    .panel-heading
+      %h3= "Проверка знаний"
+    .panel-body
+      .row
+        .col-md-8
+          - if @card.present?
+            %h4= @card.translated_text
+            %br/
+            = simple_form_for @card, as: :review, url: reviews_path, method: :post do |f|
+              = hidden_field_tag "review[card_id]", @card.id
+              = label_tag "review[answer]", "Введите перевод:"
+              = text_field_tag "review[answer]", nil, class: "form-control"
+              %br/
+              = f.button :submit, "Ответить", class: "btn-info"
+              = link_to "Не знаю", new_review_path, class: "btn btn-warning"
+          - else
+            %p
+              Непроверенных карточек нет
