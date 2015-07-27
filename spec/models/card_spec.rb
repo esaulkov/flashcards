@@ -1,7 +1,6 @@
 require "rails_helper"
 
 describe Card do
-
   context "with valid attributes" do
     let!(:card) { create(:card) }
 
@@ -50,5 +49,4 @@ describe Card do
       expect(card.check_answer(answer)).to eq false
     end
   end
-
 end
