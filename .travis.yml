@@ -6,3 +6,5 @@ notifications:
 before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database flashcards_test;' -U postgres
+env:
+  SECRET_KEY_BASE = "$(bundle exec rake secret)"
