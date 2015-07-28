@@ -1,0 +1,10 @@
+defaults: &defaults
+  encoding: unicode
+  pool: 5
+  host: localhost
+
+test:
+  <<: *defaults
+  adapter: postgresql
+  database: flashcards_test
+  username: postgres

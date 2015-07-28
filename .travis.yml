@@ -1,5 +1,8 @@
 language: ruby
 rvm:
- - 2.2.0
+ - 2.2
 notifications:
   email: false
+before_script:
+  - cp config/database.yml.travis config/database.yml
+  - psql -c 'create database flashcards_test;' -U postgres
