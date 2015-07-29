@@ -1,6 +1,10 @@
 class Card < ActiveRecord::Base
+  belongs_to :user
+
   before_create :set_review_date
-  validates :original_text, :translated_text, :review_date, presence: true
+
+  validates :original_text, :translated_text, :review_date, :user,
+            presence: true
   validate :check_translate
 
   scope :expired, -> { where("review_date <= ?", Date.today) }

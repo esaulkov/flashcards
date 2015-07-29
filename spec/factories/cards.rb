@@ -3,6 +3,7 @@ FactoryGirl.define do
     original_text "Sehenswürdigkeit"
     translated_text "Достопримечательность"
     review_date Date.today.strftime("%d/%m/%Y")
+    user
 
     after(:create) do |card|
       card.update_attributes(review_date: Date.today)
