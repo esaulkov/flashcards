@@ -4,8 +4,7 @@
       .navbar-header
         = link_to "Флэшкарточкер", root_path, class: "navbar-brand"
       %div
-        %ul.nav.navbar-nav.navbar-right
-          %li
-            = link_to "Все карточки", cards_path
-          %li
-            = link_to "Добавить карточку", new_card_path
+        - if logged_in?
+          = render partial: "shared/user"
+        - else
+          = render partial: "shared/guest"

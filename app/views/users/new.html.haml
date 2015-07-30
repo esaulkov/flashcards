@@ -1,0 +1,12 @@
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-info
+      .panel-heading
+        %h3 Регистрация
+      .panel-body
+        = simple_form_for @user do |f|
+          = f.input :email, autofocus: true
+          = f.input :password, autocomplete: "off"
+          = f.input :password_confirmation, autocomplete: "off"
+          = f.button :submit
+        = link_to "Уже зарегистрированы?", log_in_path
