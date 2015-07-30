@@ -4,8 +4,11 @@
       .panel-heading
         %h3 Вход в систему
       .panel-body
-        = simple_form_for @user, url: sessions_path, method: :post do |f|
+        = simple_form_for :session, url: sessions_path do |f|
           = f.input :email, autofocus: true
           = f.input :password, autocomplete: "off"
-          = f.button :submit
+          = f.input :remember_me, as: :boolean
+          = f.button :submit, "Войти"
         = link_to "Регистрация", sign_up_path
+        %br
+        = link_to "Забыли пароль?", new_reset_password_path

@@ -12,4 +12,6 @@ ru:
         original_text: "Исходный текст"
         translated_text: "Перевод текста"
         review_date: "Дата пересмотра"
-        user: "Владелец"
+      user:
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"

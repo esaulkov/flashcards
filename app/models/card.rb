@@ -9,6 +9,7 @@ class Card < ActiveRecord::Base
 
   scope :expired, -> { where("review_date <= ?", Date.today) }
   scope :random, -> { offset(rand(Card.expired.count)) }
+  scope :own, ->(user) { where("user_id = ?", user) }
 
   def check_answer(answer)
     if normalize(original_text) == normalize(answer)
