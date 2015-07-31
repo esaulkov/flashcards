@@ -4,7 +4,7 @@
       .panel-heading
         %h3 Восстановление пароля
       .panel-body
-        = simple_form_for @user, url: reset_password_path, method: :patch do |f|
+        = simple_form_for @user, as: :reset, url: reset_password_path, method: :patch do |f|
           = f.input :email, disabled: true
           = f.input :password
           = f.input :password_confirmation

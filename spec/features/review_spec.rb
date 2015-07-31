@@ -61,7 +61,7 @@ describe "Review a card" do
   context "work with own cards" do
     it "doesn't show the card belongs to other user" do
       second_user = create(:user, password: "secret")
-      second_card = create(:second_card, user_id: second_user.id)
+      create(:second_card, user_id: second_user.id)
       visit root_path
       expect(page).to_not have_content "Велосипед"
     end

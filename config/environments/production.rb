@@ -81,4 +81,4 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 end
 # Default Mailer Host
-Rails.application.routes.default_url_options[:host] = 'flashcards.com'
+Rails.application.routes.default_url_options[:host] = "flashcards.com"
