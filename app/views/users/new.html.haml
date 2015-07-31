@@ -5,4 +5,5 @@
         %h3 Регистрация
       .panel-body
         = render partial: "form", locals: { user: @user }
+        %br
         = link_to "Уже зарегистрированы?", log_in_path

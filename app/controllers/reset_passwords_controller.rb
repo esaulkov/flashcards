@@ -2,11 +2,10 @@ class ResetPasswordsController < ApplicationController
   skip_before_action :require_login
 
   def new
-    @user = User.new
   end
 
   def create
-    @user = User.find_by_email(reset_params[:user][:email])
+    @user = User.find_by_email(reset_params[:email])
     if @user
       @user.deliver_reset_password_instructions!
       flash[:notice] = "Инструкции были высланы на указанный адрес"
@@ -30,8 +29,8 @@ class ResetPasswordsController < ApplicationController
 
     not_authenticated && return if @user.blank?
 
-    @user.password_confirmation = reset_params[:user][:password_confirmation]
-    if @user.change_password!(reset_params[:user][:password])
+    @user.password_confirmation = reset_params[:password_confirmation]
+    if @user.change_password!(reset_params[:password])
       flash[:notice] = 'Пароль был успешно изменен'
       redirect_to log_in_path
     else
@@ -42,6 +41,6 @@ class ResetPasswordsController < ApplicationController
   private
 
   def reset_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:reset).permit(:email, :password, :password_confirmation)
   end
 end

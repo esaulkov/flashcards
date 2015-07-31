@@ -4,6 +4,10 @@
   %li
     = link_to "Добавить карточку", new_card_path
   %li
-    = link_to "Профиль", profile_path
+    = link_to profile_path do
+      %span.glyphicon.glyphicon-user
+      = "Профиль"
   %li
-    = link_to "Выйти", log_out_path
+    = link_to log_out_path, method: :delete do
+      %span.glyphicon.glyphicon-log-out
+      = "Выйти"

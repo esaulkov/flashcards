@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
   get "/log_in", to: "sessions#new", as: :log_in
-  get "log_out", to: "sessions#destroy", as: :log_out
+  delete "log_out", to: "sessions#destroy", as: :log_out
 
   resources :reset_passwords, only: [:new, :create, :edit, :update]
 end

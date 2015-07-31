@@ -41,3 +41,5 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
+# Default Mailer Host
+Rails.application.routes.default_url_options[:host] = 'flashcards.com'

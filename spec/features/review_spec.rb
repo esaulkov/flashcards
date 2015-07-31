@@ -1,7 +1,10 @@
 require "rails_helper"
 
 describe "Review a card" do
-  let!(:card) { create(:card) }
+  before(:all) { @user = create(:user, password: "abracadabra") }
+  before(:each) { login(@user, "abracadabra") }
+
+  let!(:card) { create(:card, user_id: @user.id) }
 
   context "check attributes" do
     before(:each) { visit root_path }
@@ -16,7 +19,7 @@ describe "Review a card" do
 
   context "check review_date" do
     before(:each) do
-      @second_card = create(:second_card)
+      @second_card = create(:second_card, user_id: @user.id)
       card.update_attributes(review_date: Date.today + 1.day)
     end
 
@@ -49,9 +52,18 @@ describe "Review a card" do
       click_button "Ответить"
       expect(page).to have_content "Sehenswürdigkeit"
     end
-    it "doesn't updates review_date if card missed" do
+    it "doesn't updates review_date if answer missed" do
       click_link "Не знаю"
       expect(page).to have_content "Достопримечательность"
+    end
+  end
+
+  context "work with own cards" do
+    it "doesn't show the card belongs to other user" do
+      second_user = create(:user, password: "secret")
+      second_card = create(:second_card, user_id: second_user.id)
+      visit root_path
+      expect(page).to_not have_content "Велосипед"
     end
   end
 end

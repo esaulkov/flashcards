@@ -15,3 +15,6 @@ ru:
       user:
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"
+      session:
+        password: "Пароль"
+        remember_me: "Запомнить меня"

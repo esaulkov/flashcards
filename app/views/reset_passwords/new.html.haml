@@ -4,6 +4,6 @@
       .panel-heading
         %h3 Восстановление пароля
       .panel-body
-        = simple_form_for @user, url: reset_passwords_path, method: :post do |f|
+        = simple_form_for :reset, url: reset_passwords_path, method: :post do |f|
           = f.input :email, autofocus: true
           = f.button :submit, "Выслать инструкции"
