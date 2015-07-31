@@ -5,8 +5,8 @@ class SessionsController < ApplicationController
 
   def create
     if login(session_params[:email],
-      session_params[:password],
-      session_params[:remember_me])
+             session_params[:password],
+             session_params[:remember_me])
       redirect_back_or_to root_path, notice: "Добро пожаловать!"
     else
       flash.now[:error] = "Неверный e-mail или пароль"
