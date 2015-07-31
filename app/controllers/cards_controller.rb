@@ -1,7 +1,7 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
   def index
-    @cards = Card.own(current_user).order(review_date: :desc).all
+    @cards = current_user.cards.order(review_date: :desc).all
   end
 
   def new

@@ -13,7 +13,7 @@ describe "User authorization" do
       expect(page).to have_content "Пожалуйста, пройдите авторизацию"
     end
     it "redirects to login page from profile page" do
-      visit profile_path
+      visit edit_profile_path
       expect(page).to have_content "Пожалуйста, пройдите авторизацию"
     end
     it "redirects to main page after authorization" do
@@ -21,7 +21,7 @@ describe "User authorization" do
       expect(page).to have_content "Проверка знаний"
     end
     it "remembers last page before authorization" do
-      visit profile_path
+      visit edit_profile_path
       login(@user, "abracadabra")
       expect(page).to have_content "Ваш профиль"
     end
