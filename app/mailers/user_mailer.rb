@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "no-reply@flashcards.com"
+  default from: "#{ENV['SITE_NAME']} <#{ENV['MAIL_FROM']}>"
 
   def reset_password_email(user)
     @user = user

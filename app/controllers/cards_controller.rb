@@ -5,11 +5,11 @@ class CardsController < ApplicationController
   end
 
   def new
-    @card = Card.new(user: current_user)
+    @card = current_user.cards.new
   end
 
   def create
-    @card = Card.new(card_params)
+    @card = current_user.cards.new(card_params)
 
     if @card.save
       redirect_to cards_path, notice: "Карточка успешно создана"
@@ -45,7 +45,7 @@ class CardsController < ApplicationController
 
   def card_params
     params.require(:card).permit(
-      :original_text, :translated_text, :review_date, :user_id
+      :original_text, :translated_text, :review_date
     )
   end
 end
