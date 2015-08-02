@@ -14,19 +14,10 @@ class OauthsController < ApplicationController
     else
       if logged_in?
         link_account(provider)
-        flash[:notice] = "Вы успешно подключили Github аккаунт"
         redirect_to edit_profile_path
       else
-        begin
-          @user = create_from(provider)
-          reset_session
-          auto_login(@user)
-          flash[:notice] = "Вы зарегистрировались при помощи GitHub аккаунта"
-          redirect_to root_path
-        rescue
-          flash[:error] = "Не удалось войти с использованием GitHub аккаунта"
-          redirect_to log_in_path
-        end
+        create_account(provider)
+        redirect_to logged_in? ? root_path : log_in_path
       end
     end
   end
@@ -52,6 +43,16 @@ class OauthsController < ApplicationController
       flash[:notice] = "Ваш GitHub аккаунт успешно подключен"
     else
       flash[:error] = "При подключении GitHub аккаунта возникли проблемы"
+    end
+  end
+
+  def create_account(provider)
+    if @user = create_from(provider)
+      reset_session
+      auto_login(@user)
+      flash[:notice] = "Вы зарегистрировались при помощи GitHub аккаунта"
+    else
+      flash[:error] = "Не удалось войти с использованием GitHub аккаунта"
     end
   end
 

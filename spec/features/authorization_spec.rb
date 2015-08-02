@@ -43,7 +43,7 @@ describe "User authorization" do
       fill_in "reset_email", with: @user.email
       click_button "Выслать инструкции"
       mail = ActionMailer::Base.deliveries[0]
-      expect(mail.from).to eql(['no-reply@flashcards.com'])
+      expect(mail.from).to eql(["no-reply@flashcards.com"])
     end
   end
 end

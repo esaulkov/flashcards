@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
             confirmation: true
   validates :password_confirmation, presence: true
 
-  def has_linked_with(provider)
+  def has_linked_with?(provider)
     authentications.where(provider: provider).present?
   end
 end
