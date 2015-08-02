@@ -9,3 +9,9 @@
           = f.input :password, autocomplete: "off"
           = f.input :password_confirmation, autocomplete: "off"
           = f.button :submit
+        %br
+        = image_tag("GitHub-Mark-32px.png")
+        - if @user.has_linked_with("github")
+          = link_to "Отключить Github аккаунт", delete_oauth_path("github"), method: :delete
+        - else
+          = link_to "Подключить Github аккаунт", auth_at_provider_path(provider: "github")

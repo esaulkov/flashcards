@@ -12,7 +12,10 @@ ru:
         original_text: "Исходный текст"
         translated_text: "Перевод текста"
         review_date: "Дата пересмотра"
-      user:
+      registration:
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+      profile:
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"
       session:

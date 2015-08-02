@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   delete "log_out", to: "sessions#destroy", as: :log_out
 
   resources :reset_passwords, only: [:new, :create, :edit, :update]
+  get "oauth/callback", to: "oauths#callback"
+  post "oauth/callback", to: "oauths#callback"
+  get "oauth/:provider", to: "oauths#oauth", as: :auth_at_provider
+  delete "oauth/:provider", to: "oauths#destroy", as: :delete_oauth
 end

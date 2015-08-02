@@ -10,6 +10,8 @@
           = f.input :remember_me, as: :boolean
           = f.button :submit, "Войти"
         %br
+        = link_to "Войти с помощью GitHub", auth_at_provider_path(provider: :github)
+        %br
         = link_to "Регистрация", sign_up_path
         %br
         = link_to "Забыли пароль?", new_reset_password_path
