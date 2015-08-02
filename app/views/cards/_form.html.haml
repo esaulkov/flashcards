@@ -6,7 +6,6 @@
     = f.input :review_date,
       as: :string,
       input_html: { value: localize(date_field) }
-    = f.association :user, label_method: :email, include_blank: false
     = f.button :submit
     %br/
     %br/

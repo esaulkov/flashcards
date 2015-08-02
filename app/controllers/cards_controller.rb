@@ -1,15 +1,15 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
   def index
-    @cards = Card.order(review_date: :desc).all
+    @cards = current_user.cards.order(review_date: :desc).all
   end
 
   def new
-    @card = Card.new
+    @card = current_user.cards.new
   end
 
   def create
-    @card = Card.new(card_params)
+    @card = current_user.cards.new(card_params)
 
     if @card.save
       redirect_to cards_path, notice: "Карточка успешно создана"
@@ -44,7 +44,8 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:card).permit(:original_text, :translated_text,
-      :review_date, :user_id)
+    params.require(:card).permit(
+      :original_text, :translated_text, :review_date
+    )
   end
 end

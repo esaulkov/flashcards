@@ -5,7 +5,6 @@
       %th= t "Original text"
       %th= t "Translated text"
       %th= t "Review date"
-      %th= t "Owner"
       %th{ colspan: "2" }
   %tbody
     - @cards.each do |card|
@@ -13,6 +12,5 @@
         %td= card.original_text
         %td= card.translated_text
         %td= l card.review_date
-        %td= card.user.email
         %td= link_to "Редактировать", edit_card_path(card)
         %td= link_to "Удалить", card, method: :delete, data: { confirm: "Вы уверены?" }

@@ -94,6 +94,8 @@ ru:
       card:
         one: карточку
         other: карточки
+      user:
+        one: пользователя
     errors:
       models:
         card:
@@ -103,4 +105,3 @@ ru:
   Original text: Исходный текст
   Translated text: Перевод текста
   Review date: Дата пересмотра
-  Owner: Владелец
