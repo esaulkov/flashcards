@@ -5,6 +5,6 @@
 /log/*
 !/log/.keep
 /tmp
-config/application.yml
 config/database.yml
 config/secrets.yml
+/.env
