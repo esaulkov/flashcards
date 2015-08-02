@@ -7,4 +7,4 @@ before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database flashcards_test;' -U postgres
   - cp config/secrets.yml.travis config/secrets.yml
-  - cp /.env.travis /.env
+  - cp .env.travis .env
