@@ -34,6 +34,12 @@ gem 'nokogiri'
 # Use Sorcery for authorization
 gem 'sorcery'
 
+# Use Paperclip for file upload
+gem 'paperclip', '~> 4.3'
+
+# Use AWS for files storage
+gem 'aws-sdk-v1'
+
 group :development, :test do
   # Spring speeds up development by keeping your application running in the background.
   # Read more: https://github.com/rails/spring
