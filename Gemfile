@@ -38,7 +38,7 @@ gem 'sorcery'
 gem 'paperclip', '~> 4.3'
 
 # Use AWS for files storage
-gem 'aws-sdk-v1'
+gem 'aws-sdk', '<2'
 
 group :development, :test do
   # Spring speeds up development by keeping your application running in the background.

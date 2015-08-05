@@ -7,7 +7,7 @@
         .col-md-8
           - if @card.present?
             %h4= @card.translated_text
-            = image_tag @card.image.url if @card.image.present?
+            = image_tag @card.image.url
             %br
             %br
             = simple_form_for @card, as: :review, url: reviews_path, method: :post do |f|
