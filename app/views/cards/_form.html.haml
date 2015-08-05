@@ -6,6 +6,8 @@
     = f.input :review_date,
       as: :string,
       input_html: { value: localize(date_field) }
+    = image_tag card.image.url(:thumb)
+    = f.input :image, as: :file
     = f.button :submit
     %br/
     %br/
