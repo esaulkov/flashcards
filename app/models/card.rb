@@ -1,6 +1,6 @@
 class Card < ActiveRecord::Base
   belongs_to :user
-  has_attached_file :image, 
+  has_attached_file :image,
                     styles: { original: "360x360#", thumb: "100x100#" }
 
   before_create :set_review_date

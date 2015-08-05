@@ -44,7 +44,7 @@ Rails.application.configure do
       access_key_id: ENV["AWS_ACCESS_KEY_ID"],
       secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"]
     },
-    default_url: "http://s3.amazonaws.com/#{ENV["AWS_BUCKET"]}/:style/missing.png"
+    default_url: "http://s3.amazonaws.com/#{ENV['AWS_BUCKET']}/:style/missing.png"
   }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
