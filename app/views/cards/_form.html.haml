@@ -6,6 +6,10 @@
     = f.input :review_date,
       as: :string,
       input_html: { value: localize(date_field) }
+    = f.association :deck, 
+                    collection: current_user.decks, 
+                    include_blank: false, 
+                    selected: current_user.current_deck.id
     = image_tag card.image.url(:thumb)
     = f.input :image, as: :file
     = f.button :submit

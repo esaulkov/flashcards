@@ -1,0 +1,9 @@
+.col-md-8.col-md-offset-2
+  .panel.panel-primary
+    .panel-heading
+      %h3= "Новая колода"
+    .panel-body
+      .row
+        = render partial: "form", locals: { deck: @deck }
+        .col-md-12
+          = link_to "Назад к списку", decks_path

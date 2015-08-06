@@ -1,0 +1,23 @@
+.col-md-10.col-md-offset-1
+  .panel.panel-primary
+    .panel-heading
+      %h3= @deck.name
+    .panel-body
+      .row
+        %table.table.table-striped
+          %thead
+            %tr
+              %th= t "Original text"
+              %th= t "Translated text"
+              %th= t "Image"
+              %th= t "Review date"
+              %th{ colspan: "2" }
+          %tbody
+            - @cards.each do |card|
+              %tr
+                %td= card.original_text
+                %td= card.translated_text
+                %td= image_tag card.image.url(:thumb)
+                %td= l card.review_date
+                %td= link_to "Редактировать", edit_card_path(card)
+                %td= link_to "Удалить", card, method: :delete, data: { confirm: "Вы уверены?" }

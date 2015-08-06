@@ -1,0 +1,11 @@
+.col-md-8.col-md-offset-2
+  .panel.panel-primary
+    .panel-heading
+      %h3= "Редактирование колоды"
+    .panel-body
+      .row
+        = render partial: "form", locals: { deck: @deck }
+        .col-md-12
+          = link_to "Показать карточки", deck_path(@deck)
+          %br
+          = link_to "К списку колод", decks_path

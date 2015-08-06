@@ -1,0 +1,6 @@
+.col-md-8
+  = simple_form_for deck do |f|
+    = f.input :name, default: "Колода №#{current_user.decks.count + 1}"
+    = f.button :submit
+    %br/
+    %br/

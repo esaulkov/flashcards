@@ -1,6 +1,10 @@
 class ReviewsController < ApplicationController
   def new
-    @card = current_user.cards.expired.random.first
+    if current_user.current_deck.present?
+      @card = current_user.current_deck.cards.expired.random.first
+    else
+      @card = current_user.cards.expired.random.first
+    end
   end
 
   def create

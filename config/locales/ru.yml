@@ -96,6 +96,9 @@ ru:
         other: карточки
       user:
         one: пользователя
+      deck:
+        one: колоду
+        other: колоды
     errors:
       models:
         card:
@@ -106,3 +109,5 @@ ru:
   Translated text: Перевод текста
   Review date: Дата пересмотра
   Image: Изображение
+  Name: Название
+  Count of cards: Количество карточек

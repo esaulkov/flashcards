@@ -6,6 +6,7 @@
       %th= t "Translated text"
       %th= t "Image"
       %th= t "Review date"
+      %th= t "Deck"
       %th{ colspan: "2" }
   %tbody
     - @cards.each do |card|
@@ -14,5 +15,6 @@
         %td= card.translated_text
         %td= image_tag card.image.url(:thumb)
         %td= l card.review_date
+        %td= link_to card.deck.name, deck_path(card.deck)
         %td= link_to "Редактировать", edit_card_path(card)
         %td= link_to "Удалить", card, method: :delete, data: { confirm: "Вы уверены?" }
