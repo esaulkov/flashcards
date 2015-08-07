@@ -1,10 +1,13 @@
 require "rails_helper"
 
 describe "Review a card" do
-  before(:all) { @user = create(:user, password: "abracadabra") }
+  before(:all) do
+    @user = create(:user, password: "abracadabra")
+  end
   before(:each) { login(@user, "abracadabra") }
 
-  let!(:card) { create(:card, user_id: @user.id) }
+  let!(:deck) { create(:deck, user_id: @user.id) }
+  let!(:card) { create(:card, deck_id: deck.id) }
 
   context "check attributes" do
     before(:each) { visit root_path }
@@ -19,7 +22,7 @@ describe "Review a card" do
 
   context "check review_date" do
     before(:each) do
-      @second_card = create(:second_card, user_id: @user.id)
+      @second_card = create(:second_card, deck_id: deck.id)
       card.update_attributes(review_date: Date.today + 1.day)
     end
 
@@ -31,6 +34,27 @@ describe "Review a card" do
       @second_card.update_attributes(review_date: Date.today + 1.day)
       visit root_path
       expect(page).to have_content "Непроверенных карточек нет"
+    end
+  end
+
+  context "check deck" do
+    it "shows a card if current deck is not defined" do
+      deck.update_attributes(current: false)
+      visit root_path
+      expect(page).to have_content "Достопримечательность"
+    end
+    it "shows a card from current deck" do
+      deck.update_attributes(current: true)
+      visit root_path
+      expect(page).to have_content "Достопримечательность"
+    end
+    it "doesn't show the card from other deck" do
+      deck.update_attributes(current: true)
+      card.update_attributes(review_date: Date.today + 1.day)
+      second_deck = create(:second_deck, user_id: @user.id)
+      second_card = create(:second_card, deck_id: second_deck.id)
+      visit root_path
+      expect(page).to_not have_content "Велосипед"
     end
   end
 
@@ -61,7 +85,8 @@ describe "Review a card" do
   context "work with own cards" do
     it "doesn't show the card belongs to other user" do
       second_user = create(:user, password: "secret")
-      create(:second_card, user_id: second_user.id)
+      second_deck = create(:deck, user_id: second_user.id)
+      create(:second_card, deck_id: second_deck.id)
       visit root_path
       expect(page).to_not have_content "Велосипед"
     end

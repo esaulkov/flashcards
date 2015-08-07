@@ -2,9 +2,7 @@ class Deck < ActiveRecord::Base
   belongs_to :user
   has_many :cards, inverse_of: :deck, dependent: :destroy
 
-  def current?
-    user.current_deck.present? && user.current_deck == self
-  end
+  validates :name, presence: true
 
   def clear_current(user)
     Deck.where(user: user).update_all(current: false)

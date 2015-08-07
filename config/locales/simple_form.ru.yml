@@ -23,3 +23,5 @@ ru:
       session:
         password: "Пароль"
         remember_me: "Запомнить меня"
+      deck:
+        name: "Название"
