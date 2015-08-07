@@ -8,7 +8,7 @@ describe "Change current deck" do
   before(:each) do
     login(@user, "abracadabra")
   end
-  
+
   let!(:deck) { create(:deck, user_id: @user.id) }
   let!(:second_deck) { create(:second_deck, user_id: @user.id) }
 

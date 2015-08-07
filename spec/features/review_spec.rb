@@ -52,7 +52,7 @@ describe "Review a card" do
       deck.update_attributes(current: true)
       card.update_attributes(review_date: Date.today + 1.day)
       second_deck = create(:second_deck, user_id: @user.id)
-      second_card = create(:second_card, deck_id: second_deck.id)
+      create(:second_card, deck_id: second_deck.id)
       visit root_path
       expect(page).to_not have_content "Велосипед"
     end
