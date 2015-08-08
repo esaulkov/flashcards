@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :cards
   resources :reviews, only: [:new, :create]
 
+  resources :decks do
+    put "set_current", on: :member
+  end
   resources :registrations, only: [:new, :create]
   get "/sign_up", to: "registrations#new", as: :sign_up
   resource :profile, only: [:edit, :update]

@@ -6,6 +6,9 @@
     = f.input :review_date,
       as: :string,
       input_html: { value: localize(date_field) }
+    = f.association :deck, collection: current_user.decks, include_blank: false
+    = label_tag "new_deck_name", "Создать новую колоду:"
+    = text_field_tag "new_deck_name", nil, class: "string form-control"
     = image_tag card.image.url(:thumb)
     = f.input :image, as: :file
     = f.button :submit

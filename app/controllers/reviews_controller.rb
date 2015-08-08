@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   def new
-    @card = current_user.cards.expired.random.first
+    @card = current_user.card_for_review
   end
 
   def create
