@@ -4,9 +4,8 @@ describe Deck do
   let!(:user) { create(:user) }
   let!(:deck) { create(:deck, user_id: user.id) }
 
-  it "set current flag to false for all user decks" do
-    create(:second_deck, user_id: user.id)
-    deck.clear_current(user)
-    expect(user.decks.where(current: true).count).to eq(0)
+  it "is_current? returns true if user's current deck set on this deck" do
+    user.update_attributes(current_deck: deck)
+    expect(deck.is_current?).to eq true
   end
 end

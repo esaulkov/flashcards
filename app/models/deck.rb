@@ -4,7 +4,7 @@ class Deck < ActiveRecord::Base
 
   validates :name, presence: true
 
-  def clear_current(user)
-    Deck.where(user: user).update_all(current: false)
+  def is_current?
+    user.current_deck == self
   end
 end

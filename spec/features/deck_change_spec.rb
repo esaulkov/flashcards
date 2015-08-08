@@ -25,7 +25,7 @@ describe "Change current deck" do
   end
 
   it "has only one current deck" do
-    deck.update_attributes(current: true)
+    @user.update_attributes(current_deck: deck)
     visit decks_path
     click_link("Сделать текущей")
     visit decks_path

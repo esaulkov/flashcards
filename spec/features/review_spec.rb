@@ -39,17 +39,17 @@ describe "Review a card" do
 
   context "check deck" do
     it "shows a card if current deck is not defined" do
-      deck.update_attributes(current: false)
+      @user.update_attributes(current_deck: nil)
       visit root_path
       expect(page).to have_content "Достопримечательность"
     end
     it "shows a card from current deck" do
-      deck.update_attributes(current: true)
+      @user.update_attributes(current_deck: deck)
       visit root_path
       expect(page).to have_content "Достопримечательность"
     end
     it "doesn't show the card from other deck" do
-      deck.update_attributes(current: true)
+      @user.update_attributes(current_deck: deck)
       card.update_attributes(review_date: Date.today + 1.day)
       second_deck = create(:second_deck, user_id: @user.id)
       create(:second_card, deck_id: second_deck.id)

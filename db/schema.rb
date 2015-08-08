@@ -40,9 +40,8 @@ ActiveRecord::Schema.define(version: 20150806035559) do
   end
 
   create_table "decks", force: :cascade do |t|
-    t.string  "name",                    null: false
+    t.string  "name",    null: false
     t.integer "user_id"
-    t.boolean "current", default: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -56,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150806035559) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.integer  "current_deck_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

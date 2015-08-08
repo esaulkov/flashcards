@@ -40,8 +40,7 @@ class DecksController < ApplicationController
   end
 
   def set_current
-    @deck.clear_current(current_user)
-    if @deck.update(current: true)
+    if current_user.update(current_deck: @deck)
       flash[:notice] = "Текущая колода установлена"
     else
       flash[:error] = "Не удалось установить текущую колоду"
