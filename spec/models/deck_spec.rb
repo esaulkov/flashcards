@@ -6,6 +6,6 @@ describe Deck do
 
   it "is_current? returns true if user's current deck set on this deck" do
     user.update_attributes(current_deck: deck)
-    expect(deck.is_current?).to eq true
+    expect(deck.current?).to eq true
   end
 end

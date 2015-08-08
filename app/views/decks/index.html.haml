@@ -10,7 +10,7 @@
       %tr
         %td= deck.name
         %td= deck.cards.count
-        %td= deck.is_current? ? "Текущая" : link_to("Сделать текущей", 
+        %td= deck.current? ? "Текущая" : link_to("Сделать текущей", 
                                                   set_current_deck_path(deck),
                                                   method: :post)
         %td= link_to "Показать", deck_path(deck)

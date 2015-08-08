@@ -4,7 +4,7 @@ class Deck < ActiveRecord::Base
 
   validates :name, presence: true
 
-  def is_current?
+  def current?
     user.current_deck == self
   end
 end

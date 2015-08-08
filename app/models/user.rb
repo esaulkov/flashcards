@@ -33,5 +33,5 @@ class User < ActiveRecord::Base
 
   def password_required?
     !persisted? || !password.nil? || !password_confirmation.nil?
-  end  
+  end
 end
