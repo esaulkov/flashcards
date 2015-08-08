@@ -1,16 +1,13 @@
 require "rails_helper"
 
 describe "Change current deck" do
-  before(:all) do
-    @user = create(:user, password: "abracadabra")
-  end
-
   before(:each) do
-    login(@user, "abracadabra")
+    login(user, "abracadabra")
   end
 
-  let!(:deck) { create(:deck, user_id: @user.id) }
-  let!(:second_deck) { create(:second_deck, user_id: @user.id) }
+  let!(:deck) { create(:deck, user_id: user.id) }
+  let!(:second_deck) { create(:second_deck, user_id: user.id) }
+  let!(:user) { create(:user, password: "abracadabra") }
 
   it "doesn't have current deck" do
     visit decks_path
@@ -25,7 +22,7 @@ describe "Change current deck" do
   end
 
   it "has only one current deck" do
-    @user.update_attributes(current_deck: deck)
+    user.update_attributes(current_deck: deck)
     visit decks_path
     click_link("Сделать текущей")
     visit decks_path

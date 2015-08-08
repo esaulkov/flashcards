@@ -12,7 +12,7 @@
         %td= deck.cards.count
         %td= deck.current? ? "Текущая" : link_to("Сделать текущей", 
                                                   set_current_deck_path(deck),
-                                                  method: :post)
+                                                  method: :put)
         %td= link_to "Показать", deck_path(deck)
         %td= link_to "Редактировать", edit_deck_path(deck)
         %td= link_to "Удалить", deck, method: :delete, data: { confirm: "Вы уверены?" }

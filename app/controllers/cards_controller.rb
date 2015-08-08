@@ -59,6 +59,6 @@ class CardsController < ApplicationController
   end
 
   def deck_params
-    params.require(:deck).permit(:new_deck)
+    params.permit(:new_deck_name)
   end
 end
