@@ -55,3 +55,5 @@ group :test do
   gem 'capybara'
   gem 'faker'
 end
+
+ruby "2.2.0"
