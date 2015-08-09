@@ -45,7 +45,7 @@ class CardsController < ApplicationController
   end
 
   def create_deck
-    new_deck = deck_params[:new_deck]
+    new_deck = deck_params[:new_deck_name]
     if new_deck.present?
       deck = current_user.decks.create(name: new_deck)
       params[:card][:deck_id] = deck.id
