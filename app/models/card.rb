@@ -15,9 +15,19 @@ class Card < ActiveRecord::Base
 
   def check_answer(answer)
     if normalize(original_text) == normalize(answer)
-      update_attributes(review_date: 3.days.from_now.to_date)
+      update_attributes(review_date: 3.days.from_now.to_date, attempt: 0)
       return true
     else
+      return false
+    end
+  end
+
+  def has_valid_attempt
+    if attempt < 2
+      self.increment!(:attempt)
+      return true
+    else
+      update_attributes(attempt: 0)
       return false
     end
   end
@@ -25,7 +35,7 @@ class Card < ActiveRecord::Base
   protected
 
   def set_review_date
-    self.review_date = 3.days.from_now.to_date
+    self.review_date = Date.today
   end
 
   private
