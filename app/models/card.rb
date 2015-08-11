@@ -1,4 +1,13 @@
 class Card < ActiveRecord::Base
+  OPTIONS = ActiveSupport::OrderedHash[
+    0, 0,
+    1, 0.5,
+    2, 3,
+    3, 7,
+    4, 14,
+    5, 30
+  ]
+
   belongs_to :deck
   has_attached_file :image,
                     styles: { original: "360x360#", thumb: "100x100#" }
@@ -10,12 +19,13 @@ class Card < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validate :check_translate
 
-  scope :expired, -> { where("review_date <= ?", Date.today) }
+  scope :expired, -> { where("review_date <= ?", DateTime.now) }
   scope :random, -> { offset(rand(Card.expired.count)) }
 
   def check_answer(answer)
     if normalize(original_text) == normalize(answer)
-      update_attributes(review_date: 3.days.from_now.to_date, attempt: 0)
+      new_basket = basket < OPTIONS.keys.last ? basket + 1 : basket
+      update_review(new_basket)
       return true
     else
       return false
@@ -27,7 +37,8 @@ class Card < ActiveRecord::Base
       self.increment!(:attempt)
       return true
     else
-      update_attributes(attempt: 0)
+      new_basket = basket > OPTIONS.keys.second ? basket - 2 : 0
+      update_review(new_basket)
       return false
     end
   end
@@ -35,7 +46,16 @@ class Card < ActiveRecord::Base
   protected
 
   def set_review_date
-    self.review_date = Date.today
+    self.review_date = DateTime.now
+  end
+
+  def update_review(new_basket)
+    time_period = OPTIONS[new_basket].days.from_now
+    self.update(
+      basket: new_basket,
+      review_date: time_period,
+      attempt: 0
+    )
   end
 
   private

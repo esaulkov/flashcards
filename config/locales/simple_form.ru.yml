@@ -11,7 +11,7 @@ ru:
       card:
         original_text: "Исходный текст"
         translated_text: "Перевод текста"
-        review_date: "Дата пересмотра"
+        review_date: "Дата и время пересмотра"
         deck: "Колода"
         image: "Изображение"
       registration:
