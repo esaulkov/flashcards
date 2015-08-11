@@ -32,7 +32,7 @@ class Card < ActiveRecord::Base
     end
   end
 
-  def has_valid_attempt
+  def has_valid_attempt?
     if attempt < 2
       self.increment!(:attempt)
       return true
@@ -51,11 +51,7 @@ class Card < ActiveRecord::Base
 
   def update_review(new_basket)
     time_period = OPTIONS[new_basket].days.from_now
-    self.update(
-      basket: new_basket,
-      review_date: time_period,
-      attempt: 0
-    )
+    update(basket: new_basket, review_date: time_period, attempt: 0)
   end
 
   private
