@@ -18,7 +18,7 @@ describe Card do
     end
   end
 
-  context "check_answer method" do
+  context "check_answer method with right answer" do
     let!(:card) { create(:card) }
 
     def check_time_period(basket)
@@ -30,7 +30,7 @@ describe Card do
     it "updates review_date if answer is equal to original_text" do
       answer = "Sehenswürdigkeit"
       card.check_answer(answer)
-      expect(card.review_date).to be > DateTime.now
+      expect(card.review_date).to be > DateTime.current
     end
 
     it "updates review_date by different time" do
@@ -62,28 +62,14 @@ describe Card do
       expect(card.check_answer(answer)).to eq true
     end
 
-    it "does not update review_date if answer is not equal to original_text" do
-      review_date = DateTime.now
-      card = build(:card, review_date: review_date)
-      answer = "Sight"
-      card.check_answer(answer)
-      expect(card.review_date).to eq review_date
-    end
-
-    it "returns false if answer is not equal to original_text" do
-      card = build(:card)
-      answer = "Sight"
-      expect(card.check_answer(answer)).to eq false
-    end
-
-    it "increases basket field" do
+    it "increases basket field if answer is right" do
       old_basket = card.basket
       answer = "Sehenswürdigkeit"
       card.check_answer(answer)
       expect(card.basket).to eq (old_basket + 1)
     end
 
-    it "doesn't increase basket field if it is max" do
+    it "doesn't increase basket field if it has max value" do
       card.update_attributes(basket: Card::OPTIONS.size - 1)
       old_basket = card.basket
       answer = "Sehenswürdigkeit"
@@ -92,40 +78,47 @@ describe Card do
     end
   end
 
-  context "check_attempt method" do
+  context "check_answer method with wrong answer" do
     let!(:card) { create(:card) }
 
-    it "returns true if attempt is less than two" do
-      expect(card.check_attempt).to eq true
+    it "does not update review_date if answer is not equal to original_text" do
+      review_date = card.review_date
+      answer = "Sight"
+      card.check_answer(answer)
+      expect(card.review_date).to eq review_date
     end
 
-    it "returns false if attempt is equal two" do
-      card.update_attributes(attempt: 2)
-      expect(card.check_attempt).to eq false
+    it "returns false if answer is not equal to original_text" do
+      answer = "Sight"
+      expect(card.check_answer(answer)).to eq false
     end
 
-    it "increases attempt field if it is less than two" do
+    it "increases attempt field if it is less than two and answer is wrong" do
       attempt_backup = card.attempt
-      card.check_attempt
+      answer = "Sight"
+      card.check_answer(answer)
       expect(card.attempt).to eq (attempt_backup + 1)
     end
 
-    it "clears attempt field if it is equal two" do
+    it "clears attempt field if it is equal two and answer is wrong" do
       card.update_attributes(attempt: 2)
-      card.check_attempt
+      answer = "Sight"
+      card.check_answer(answer)
       expect(card.attempt).to eq 0
     end
 
     it "decreases basket field if attempt field is equal two" do
       card.update_attributes(attempt: 2, basket: 3)
       old_basket = card.basket
-      card.check_attempt
+      answer = "Sight"
+      card.check_answer(answer)
       expect(card.basket).to eq (old_basket - 2)
     end
 
     it "clears basket field if it is less than two" do
       card.update_attributes(attempt: 2, basket: 1)
-      card.check_attempt
+      answer = "Sight"
+      card.check_answer(answer)
       expect(card.basket).to eq 0
     end
   end

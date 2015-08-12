@@ -12,7 +12,7 @@ class Card < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validate :check_translate
 
-  scope :expired, -> { where("review_date <= ?", DateTime.now) }
+  scope :expired, -> { where("review_date <= ?", DateTime.current) }
   scope :random, -> { offset(rand(Card.expired.count)) }
 
   def check_answer(answer)
@@ -20,15 +20,9 @@ class Card < ActiveRecord::Base
       new_basket = basket < OPTIONS.size - 1 ? basket + 1 : basket
       update_review(new_basket)
       return true
-    else
-      return false
-    end
-  end
-
-  def check_attempt
-    if attempt < 2
+    elsif attempt < 2
       self.increment!(:attempt)
-      return true
+      return false
     else
       new_basket = basket > 1 ? basket - 2 : 0
       update_review(new_basket)
@@ -39,7 +33,7 @@ class Card < ActiveRecord::Base
   protected
 
   def set_review_date
-    self.review_date = DateTime.now
+    self.review_date = DateTime.current
   end
 
   def update_review(new_basket)
