@@ -17,14 +17,14 @@ class Card < ActiveRecord::Base
 
   def check_answer(answer)
     if normalize(original_text) == normalize(answer)
-      new_basket = basket < OPTIONS.size - 1 ? basket + 1 : basket
+      new_basket = [basket + 1, OPTIONS.size - 1].min
       update_review(new_basket)
       return true
     elsif attempt < 2
       self.increment!(:attempt)
       return false
     else
-      new_basket = basket > 1 ? basket - 2 : 0
+      new_basket = [basket - 2, 0].max
       update_review(new_basket)
       return false
     end
