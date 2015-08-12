@@ -25,7 +25,7 @@ class Card < ActiveRecord::Base
     end
   end
 
-  def has_valid_attempt?
+  def check_attempt
     if attempt < 2
       self.increment!(:attempt)
       return true

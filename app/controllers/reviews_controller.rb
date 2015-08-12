@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
     @card = Card.find(review_params[:card_id])
     if @card.check_answer(review_params[:answer])
       redirect_to new_review_path, notice: "Верный ответ!"
-    elsif @card.has_valid_attempt?
+    elsif @card.check_attempt
       flash.now[:error] = "Вы ошиблись! Попробуйте еще раз."
       render :new
     else

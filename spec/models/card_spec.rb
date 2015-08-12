@@ -92,40 +92,40 @@ describe Card do
     end
   end
 
-  context "has_valid_attempt? method" do
+  context "check_attempt method" do
     let!(:card) { create(:card) }
 
     it "returns true if attempt is less than two" do
-      expect(card.has_valid_attempt?).to eq true
+      expect(card.check_attempt).to eq true
     end
 
     it "returns false if attempt is equal two" do
       card.update_attributes(attempt: 2)
-      expect(card.has_valid_attempt?).to eq false
+      expect(card.check_attempt).to eq false
     end
 
     it "increases attempt field if it is less than two" do
       attempt_backup = card.attempt
-      card.has_valid_attempt?
+      card.check_attempt
       expect(card.attempt).to eq (attempt_backup + 1)
     end
 
     it "clears attempt field if it is equal two" do
       card.update_attributes(attempt: 2)
-      card.has_valid_attempt?
+      card.check_attempt
       expect(card.attempt).to eq 0
     end
 
     it "decreases basket field if attempt field is equal two" do
       card.update_attributes(attempt: 2, basket: 3)
       old_basket = card.basket
-      card.has_valid_attempt?
+      card.check_attempt
       expect(card.basket).to eq (old_basket - 2)
     end
 
     it "clears basket field if it is less than two" do
       card.update_attributes(attempt: 2, basket: 1)
-      card.has_valid_attempt?
+      card.check_attempt
       expect(card.basket).to eq 0
     end
   end
