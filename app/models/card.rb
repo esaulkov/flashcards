@@ -1,12 +1,5 @@
 class Card < ActiveRecord::Base
-  OPTIONS = ActiveSupport::OrderedHash[
-    0, 0,
-    1, 0.5,
-    2, 3,
-    3, 7,
-    4, 14,
-    5, 30
-  ]
+  OPTIONS = [0, 0.5, 3, 7, 14, 30]
 
   belongs_to :deck
   has_attached_file :image,
@@ -24,7 +17,7 @@ class Card < ActiveRecord::Base
 
   def check_answer(answer)
     if normalize(original_text) == normalize(answer)
-      new_basket = basket < OPTIONS.keys.last ? basket + 1 : basket
+      new_basket = basket < OPTIONS.size - 1 ? basket + 1 : basket
       update_review(new_basket)
       return true
     else
@@ -37,7 +30,7 @@ class Card < ActiveRecord::Base
       self.increment!(:attempt)
       return true
     else
-      new_basket = basket > OPTIONS.keys.second ? basket - 2 : 0
+      new_basket = basket > 1 ? basket - 2 : 0
       update_review(new_basket)
       return false
     end

@@ -34,7 +34,7 @@ describe Card do
     end
 
     it "updates review_date by different time" do
-      Card::OPTIONS.keys.each do |basket|
+      (0..5).to_a.each do |basket|
         check_time_period(basket)
         basket = basket + 1 if basket < 5
         time_period = Card::OPTIONS[basket].days.from_now
@@ -84,7 +84,7 @@ describe Card do
     end
 
     it "doesn't increase basket field if it is max" do
-      card.update_attributes(basket: Card::OPTIONS.keys.last)
+      card.update_attributes(basket: Card::OPTIONS.size - 1)
       old_basket = card.basket
       answer = "Sehenswürdigkeit"
       card.check_answer(answer)
