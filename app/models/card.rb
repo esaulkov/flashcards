@@ -5,12 +5,12 @@ class Card < ActiveRecord::Base
   has_attached_file :image,
                     styles: { original: "360x360#", thumb: "100x100#" }
 
-  before_create :set_review_date
-
   validates :original_text, :translated_text, :review_date, :deck,
             presence: true
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validate :check_translate
+
+  before_create :set_review_date
 
   scope :expired, -> { where("review_date <= ?", DateTime.current) }
   scope :random, -> { offset(rand(Card.expired.count)) }
