@@ -4,11 +4,14 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    card = Card.find(review_params[:card_id])
-    if card.check_answer(review_params[:answer])
+    @card = Card.find(review_params[:card_id])
+    if @card.check_answer(review_params[:answer])
       redirect_to new_review_path, notice: "Верный ответ!"
+    elsif @card.attempt > 0
+      flash.now[:error] = "Вы ошиблись! Попробуйте еще раз."
+      render :new
     else
-      flash[:error] = "Вы ошиблись! Правильный ответ - #{card.original_text}"
+      flash[:error] = "Вы ошиблись! Правильный ответ - #{@card.original_text}"
       redirect_to new_review_path
     end
   end

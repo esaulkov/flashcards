@@ -36,6 +36,13 @@ ru:
     - октября
     - ноября
     - декабря
+  time:
+    am: утра
+    formats:
+      default: "%d/%m/%Y, %H:%M"
+      long: "%d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"
+    pm: вечера
   errors:
     format: "%{attribute} %{message}"
     messages:
@@ -107,7 +114,7 @@ ru:
               bad_translate: Исходный текст и перевод должны различаться
   Original text: Исходный текст
   Translated text: Перевод текста
-  Review date: Дата пересмотра
+  Review date: Пересмотр после
   Image: Изображение
   Name: Название
   Count of cards: Количество карточек

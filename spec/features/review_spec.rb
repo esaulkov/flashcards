@@ -71,7 +71,14 @@ describe "Review a card" do
       click_button "Ответить"
       expect(page).to have_content "Вы ошиблись!"
     end
+    it "shows card one more time if answer is wrong" do
+      card.update_attributes(attempt: 1)
+      fill_in "review_answer", with: "Denkmal"
+      click_button "Ответить"
+      expect(page).to have_content "Достопримечательность"
+    end
     it "shows right answer if answer is wrong" do
+      card.update_attributes(attempt: 2)
       fill_in "review_answer", with: "Denkmal"
       click_button "Ответить"
       expect(page).to have_content "Sehenswürdigkeit"
