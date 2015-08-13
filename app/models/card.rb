@@ -16,17 +16,18 @@ class Card < ActiveRecord::Base
   scope :random, -> { offset(rand(Card.expired.count)) }
 
   def check_answer(answer)
-    if normalize(original_text) == normalize(answer)
+    analogy = similarity(original_text, answer)
+    if answer_is_correct?(original_text, analogy)
       new_basket = [basket + 1, OPTIONS.size - 1].min
       update_review(new_basket)
-      return true
+      return [true, analogy]
     elsif attempt < 2
       self.increment!(:attempt)
-      return false
+      return [false, 0]
     else
       new_basket = [basket - 2, 0].max
       update_review(new_basket)
-      return false
+      return [false, 0]
     end
   end
 
@@ -49,7 +50,17 @@ class Card < ActiveRecord::Base
     end
   end
 
+  def similarity(first, second)
+    first = normalize(first)
+    second = normalize(second)
+    Levenshtein.distance(first, second)
+  end
+
+  def answer_is_correct?(text, analogy)
+    analogy < [text.size / 3.0, 1].max
+  end
+
   def normalize(text)
-    text.mb_chars.downcase.strip
+    text.mb_chars.downcase.strip.wrapped_string
   end
 end
