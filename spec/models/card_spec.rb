@@ -44,33 +44,33 @@ describe Card do
 
     it "returns true if answer is equal to original_text" do
       answer = "Sehenswürdigkeit"
-      expect(card.check_answer(answer)[0]).to eq true
+      expect(card.check_answer(answer)[:success]).to eq true
     end
 
     it "returns true if answer is in other case" do
       answer = "seHenswürDigkeit"
-      expect(card.check_answer(answer)[0]).to eq true
+      expect(card.check_answer(answer)[:success]).to eq true
     end
 
     it "returns true if answer ends with blank symbol" do
       answer = "Sehenswürdigkeit "
-      expect(card.check_answer(answer)[0]).to eq true
+      expect(card.check_answer(answer)[:success]).to eq true
     end
 
     it "returns true if answer begins with spaces" do
       answer = "  Sehenswürdigkeit"
-      expect(card.check_answer(answer)[0]).to eq true
+      expect(card.check_answer(answer)[:success]).to eq true
     end
 
-    it "returns true if answer has misprint" do
+    it "returns true if answer has typo" do
       answer = "Sehenswurdigkeit"
-      expect(card.check_answer(answer)[0]).to eq true
+      expect(card.check_answer(answer)[:success]).to eq true
     end
 
-    it "returns true if answer has some misprints" do
+    it "returns true if answer has some typos" do
       card = create(:second_card)
       answer = "Farad"
-      expect(card.check_answer(answer)[0]).to eq true
+      expect(card.check_answer(answer)[:success]).to eq true
     end
 
     it "increases basket field if answer is right" do
@@ -101,19 +101,19 @@ describe Card do
 
     it "returns false if answer is not equal to original_text" do
       answer = "Sight"
-      expect(card.check_answer(answer)[0]).to eq false
+      expect(card.check_answer(answer)[:success]).to eq false
     end
 
-    it "returns false if answer has too much misprints" do
+    it "returns false if answer has too much typos" do
       card = create(:second_card)
       answer = "Farade"
-      expect(card.check_answer(answer)[0]).to eq false
+      expect(card.check_answer(answer)[:success]).to eq false
     end
 
-    it "returns false if answer has misprint but word is simple" do
+    it "returns false if answer has typo but word is simple" do
       card = create(:card, original_text: "Акула", translated_text: "Hai")
       answer = "Hay"
-      expect(card.check_answer(answer)[0]).to eq false
+      expect(card.check_answer(answer)[:success]).to eq false
     end
 
     it "increases attempt field if it is less than two and answer is wrong" do

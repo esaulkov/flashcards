@@ -91,7 +91,7 @@ describe "Review a card" do
     it "shows misprint message if answer has misprint" do
       fill_in "review_answer", with: "Sehenswurdigkeit"
       click_button "Ответить"
-      expect(page).to have_content "Опечатка"
+      expect(page).to have_content "опечатка"
     end
     it "doesn't updates review_date if answer missed" do
       click_link "Не знаю"

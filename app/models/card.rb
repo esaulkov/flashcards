@@ -16,18 +16,18 @@ class Card < ActiveRecord::Base
   scope :random, -> { offset(rand(Card.expired.count)) }
 
   def check_answer(answer)
-    analogy = similarity(original_text, answer)
-    if answer_is_correct?(original_text, analogy)
+    typos = similarity(original_text, answer)
+    if answer_is_correct?(original_text, typos)
       new_basket = [basket + 1, OPTIONS.size - 1].min
       update_review(new_basket)
-      return [true, analogy]
+      return { success: true, typos: typos }
     elsif attempt < 2
       self.increment!(:attempt)
-      return [false, 0]
+      return { success: false, typos: typos }
     else
       new_basket = [basket - 2, 0].max
       update_review(new_basket)
-      return [false, 0]
+      return { success: false, typos: typos }
     end
   end
 
@@ -50,14 +50,14 @@ class Card < ActiveRecord::Base
     end
   end
 
-  def similarity(first, second)
-    first = normalize(first)
-    second = normalize(second)
-    Levenshtein.distance(first, second)
+  def similarity(first_word, second_word)
+    first_word = normalize(first_word)
+    second_word = normalize(second_word)
+    Levenshtein.distance(first_word, second_word)
   end
 
-  def answer_is_correct?(text, analogy)
-    analogy < [text.size / 3.0, 1].max
+  def answer_is_correct?(text, typos)
+    typos < [text.size / 3.0, 1].max
   end
 
   def normalize(text)

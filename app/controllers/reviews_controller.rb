@@ -5,10 +5,12 @@ class ReviewsController < ApplicationController
 
   def create
     @card = Card.find(review_params[:card_id])
-    answer_is_right, distance = @card.check_answer(review_params[:answer])
-    if answer_is_right
+    results = @card.check_answer(review_params[:answer])
+    if results[:success]
       flash[:notice] = "Верный ответ! Это #{@card.original_text}."
-      flash[:notice] += " Опечатка - #{review_params[:answer]}" if distance > 0
+      if results[:typos] > 0
+        flash[:notice] += " Но у Вас опечатка - #{review_params[:answer]}"
+      end
       redirect_to new_review_path
     elsif @card.attempt > 0
       flash.now[:error] = "Вы ошиблись! Попробуйте еще раз."
