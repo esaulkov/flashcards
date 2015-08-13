@@ -54,6 +54,8 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.7)
       climate_control (>= 0.0.3, < 1.0)
+    codeclimate-test-reporter (0.4.7)
+      simplecov (>= 0.7.1, < 1.0.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -62,6 +64,7 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     dotenv (2.0.2)
     dotenv-rails (2.0.2)
       dotenv (= 2.0.2)
@@ -77,6 +80,7 @@ GEM
       i18n (~> 0.5)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
+    ffi (1.9.10)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     haml (4.0.6)
@@ -102,6 +106,8 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     jwt (1.5.1)
+    levenshtein-ffi (1.1.0)
+      ffi (~> 1.9)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -195,6 +201,11 @@ GEM
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    simplecov (0.10.0)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     sorcery (0.9.1)
       bcrypt (~> 3.1)
       oauth (~> 0.4, >= 0.4.4)
@@ -225,6 +236,7 @@ PLATFORMS
 DEPENDENCIES
   aws-sdk (< 2)
   capybara
+  codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   dotenv-rails
   factory_girl_rails
@@ -232,6 +244,7 @@ DEPENDENCIES
   haml-rails (~> 0.9)
   jbuilder (~> 2.0)
   jquery-rails
+  levenshtein-ffi
   nokogiri
   paperclip (~> 4.3)
   pg (~> 0.18.2)

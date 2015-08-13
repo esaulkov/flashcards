@@ -41,6 +41,9 @@ gem 'paperclip', '~> 4.3'
 # Use AWS for files storage
 gem 'aws-sdk', '<2'
 
+#Use Levenshtein-ffi for fast distance computation between words
+gem 'levenshtein-ffi', require: 'levenshtein'
+
 gem 'rails_12factor', group: :production
 
 group :development, :test do
@@ -55,4 +58,5 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'faker'
+  gem 'codeclimate-test-reporter', require: nil
 end

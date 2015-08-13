@@ -83,6 +83,16 @@ describe "Review a card" do
       click_button "Ответить"
       expect(page).to have_content "Sehenswürdigkeit"
     end
+    it "shows success message if answer has misprint" do
+      fill_in "review_answer", with: "Sehenswurdigkeit"
+      click_button "Ответить"
+      expect(page).to have_content "Верный ответ!"
+    end
+    it "shows misprint message if answer has misprint" do
+      fill_in "review_answer", with: "Sehenswurdigkeit"
+      click_button "Ответить"
+      expect(page).to have_content "опечатка"
+    end
     it "doesn't updates review_date if answer missed" do
       click_link "Не знаю"
       expect(page).to have_content "Достопримечательность"

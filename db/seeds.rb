@@ -21,7 +21,7 @@ urls.each do |pageUrl|
     deck.cards.create(
       original_text: source["value"],
       translated_text: dst[src.index(source)]["value"],
-      review_date: DateTime.now
+      review_date: DateTime.current
     )
   end
 end
