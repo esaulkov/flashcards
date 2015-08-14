@@ -41,8 +41,11 @@ gem 'paperclip', '~> 4.3'
 # Use AWS for files storage
 gem 'aws-sdk', '<2'
 
-#Use Levenshtein-ffi for fast distance computation between words
+# Use Levenshtein-ffi for fast distance computation between words
 gem 'levenshtein-ffi', require: 'levenshtein'
+
+# Use Whenever for writing cron jobs
+gem 'whenever', :require => false
 
 gem 'rails_12factor', group: :production
 

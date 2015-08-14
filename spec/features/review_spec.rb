@@ -23,7 +23,7 @@ describe "Review a card" do
   context "check review_date" do
     before(:each) do
       @second_card = create(:second_card, deck_id: deck.id)
-      card.update_attributes(review_date: Date.today + 1.day)
+      card.update_attributes(review_date: DateTime.current + 1.day)
     end
 
     it "shows a card with review_date less or equal today" do
@@ -31,7 +31,7 @@ describe "Review a card" do
       expect(page).to have_content "Велосипед"
     end
     it "doesn't show the card with review_date greater today" do
-      @second_card.update_attributes(review_date: Date.today + 1.day)
+      @second_card.update_attributes(review_date: DateTime.current + 1.day)
       visit root_path
       expect(page).to have_content "Непроверенных карточек нет"
     end
