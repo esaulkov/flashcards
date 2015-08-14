@@ -45,7 +45,7 @@ gem 'aws-sdk', '<2'
 gem 'levenshtein-ffi', require: 'levenshtein'
 
 # Use Whenever for writing cron jobs
-gem 'whenever', :require => false
+gem 'whenever', require: false
 
 gem 'rails_12factor', group: :production
 
