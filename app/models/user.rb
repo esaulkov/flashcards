@@ -29,6 +29,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.notify_about_pending_cards
+    joins(:cards).merge(Card.expired).distinct.find_each do |user|
+      NotificationsMailer.pending_cards(user).deliver
+    end
+  end
+
   protected
 
   def password_required?
