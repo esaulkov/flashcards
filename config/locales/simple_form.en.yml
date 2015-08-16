@@ -7,3 +7,22 @@ en:
       mark: '*'
     error_notification:
       default_message: "Please review the problems below:"
+    labels:
+      card:
+        original_text: "Original text"
+        translated_text: "Translated text"
+        review_date: "Review date and time"
+        deck: "Deck"
+        image: "Image"
+      registration:
+        password: "Password"
+        password_confirmation: "Password confirmation"
+      profile:
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        locale: "Locale"
+      session:
+        password: "Password"
+        remember_me: "Remember me"
+      deck:
+        name: "Name"

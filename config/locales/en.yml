@@ -4,6 +4,22 @@ en:
       default: "%d/%m/%Y, %H:%M"
       long: "%d %B %Y, %H:%M"
       short: "%d %b, %H:%M"
+  activerecord:
+    models:
+      card:
+        one: card
+        other: cards
+      user:
+        one: user
+      deck:
+        one: deck
+        other: decks
+    errors:
+      models:
+        card:
+          attributes:
+            translated_text:
+              bad_translate: Original text and translated text should be different
   site_name: Flashcarder
   All cards: All cards
   Add card: Add card

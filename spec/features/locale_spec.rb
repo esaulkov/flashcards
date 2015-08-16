@@ -29,7 +29,7 @@ describe "User locale" do
       select "ru", from: "profile_locale"
       fill_in "profile_password", with: "abracadabra"
       fill_in "profile_password_confirmation", with: "abracadabra"
-      click_button "Update User"
+      click_button "Update user"
       expect(page).to have_content "Ваш профиль"
     end
   end
