@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   private
 
   def not_authenticated
-    redirect_to log_in_path, alert: t("Not authenticated")
+    redirect_to log_in_path, alert: t(:not_authenticated)
   end
 
   def set_locale

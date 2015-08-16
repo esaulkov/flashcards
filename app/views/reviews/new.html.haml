@@ -1,7 +1,7 @@
 .col-md-8.col-md-offset-2
   .panel.panel-primary
     .panel-heading
-      %h3= t "Check of knowledge"
+      %h3= t :check_of_knowledge
     .panel-body
       .row
         .col-md-8
@@ -12,11 +12,12 @@
             %br
             = simple_form_for @card, as: :review, url: reviews_path, method: :post do |f|
               = hidden_field_tag "review[card_id]", @card.id
-              = label_tag "review[answer]", t("Translate it")
+              = label_tag "review[answer]", t(:translate_it)
               = text_field_tag "review[answer]", nil, autocomplete: "off",
                 class: "form-control"
               %br
-              = f.button :submit, t("Send answer"), class: "btn-info"
-              = link_to t("I don't know"), new_review_path, class: "btn btn-warning"
+              = f.button :submit, t(:send_answer), class: "btn-info"
+              = link_to new_review_path, class: "btn btn-warning" do
+                = t(:does_not_know_answer)
           - else
-            %p= t "No cards"
+            %p= t :no_cards

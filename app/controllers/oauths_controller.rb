@@ -10,7 +10,7 @@ class OauthsController < ApplicationController
     provider = auth_params[:provider]
 
     if @user = login_from(provider)
-      redirect_back_or_to root_path, notice: t("Welcome")
+      redirect_back_or_to root_path, notice: t(:welcome)
     else
       if logged_in?
         link_account(provider)
@@ -28,9 +28,9 @@ class OauthsController < ApplicationController
     authentication = current_user.authentications.find_by_provider(provider)
     if authentication.present?
       authentication.destroy
-      flash[:notice] = t("Github account was unlinked")
+      flash[:notice] = t(:github_account_was_unlinked)
     else
-      flash[:error] = t("Github account is upsent")
+      flash[:error] = t(:github_account_is_upsent)
     end
 
     redirect_to edit_profile_path
@@ -40,9 +40,9 @@ class OauthsController < ApplicationController
 
   def link_account(provider)
     if @user = add_provider_to_user(provider)
-      flash[:notice] = t("Github account was linked")
+      flash[:notice] = t(:github_account_was_linked)
     else
-      flash[:error] = t("Unable to link Github account")
+      flash[:error] = t(:unable_to_link_github_account)
     end
   end
 
@@ -50,9 +50,9 @@ class OauthsController < ApplicationController
     if @user = create_from(provider)
       reset_session
       auto_login(@user)
-      flash[:notice] = t("Registration with Github account")
+      flash[:notice] = t(:registration_with_github_account)
     else
-      flash[:error] = t("Registration with Github account failed")
+      flash[:error] = t(:registration_with_github_account_failed)
     end
   end
 

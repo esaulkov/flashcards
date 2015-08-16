@@ -26,7 +26,7 @@ class ResetPasswordsController < ApplicationController
 
     @user.password_confirmation = reset_params[:password_confirmation]
     if @user.change_password!(reset_params[:password])
-      flash[:notice] = t("Password changed")
+      flash[:notice] = t(:password_changed)
       redirect_to log_in_path
     else
       render :edit

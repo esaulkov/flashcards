@@ -4,7 +4,8 @@ class ProfilesController < ApplicationController
 
   def update
     if current_user.update(profile_params)
-      flash[:notice] = t("Profile was changed")
+      set_locale
+      flash[:notice] = t(:profile_was_changed)
       redirect_to edit_profile_path
     else
       render :edit

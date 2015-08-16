@@ -8,16 +8,16 @@ class SessionsController < ApplicationController
              session_params[:password],
              session_params[:remember_me])
       set_locale
-      redirect_back_or_to root_path, notice: t("Welcome")
+      redirect_back_or_to root_path, notice: t(:welcome)
     else
-      flash.now[:error] = t("Wrong login")
+      flash.now[:error] = t(:wrong_login)
       render :new
     end
   end
 
   def destroy
     logout
-    redirect_to log_in_path, notice: t("You log out")
+    redirect_to log_in_path, notice: t(:log_out_message)
   end
 
   private

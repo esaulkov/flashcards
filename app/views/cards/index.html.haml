@@ -1,12 +1,12 @@
-%h3= t "All cards"
+%h3= t :all_cards
 %table.table.table-striped
   %thead
     %tr
-      %th= t "Original text"
-      %th= t "Translated text"
-      %th= t "Image"
-      %th= t "Review date"
-      %th= t "Deck"
+      %th= t :original_text
+      %th= t :translated_text
+      %th= t :image
+      %th= t :review_date
+      %th= t :deck
       %th{ colspan: "2" }
   %tbody
     - @cards.each do |card|
@@ -16,5 +16,5 @@
         %td= image_tag card.image.url(:thumb)
         %td= l card.review_date
         %td= link_to card.deck.name, deck_path(card.deck)
-        %td= link_to t("Edit"), edit_card_path(card)
-        %td= link_to t("Delete"), card, method: :delete, data: { confirm: t("Are you sure?") }
+        %td= link_to t(:edit), edit_card_path(card)
+        %td= link_to t(:delete), card, method: :delete, data: { confirm: t(:delete_confirmation) }
