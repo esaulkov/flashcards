@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   def define_locale
     case
     when current_user then current_user.locale
-    when params[:locale] then session[:locale] = params[:locale]
+    when params[:locale] then params[:locale]
     when session[:locale] then session[:locale]
     else
       http_accept_language.compatible_language_from(I18n.available_locales)
