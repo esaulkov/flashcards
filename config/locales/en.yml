@@ -20,79 +20,79 @@ en:
           attributes:
             translated_text:
               bad_translate: Original text and translated text should be different
-  site_name: Flashcarder
-  all_cards: All cards
   add_card: Add card
-  decks: Decks
-  profile: Profile
-  log_in: Log in
-  log_out: Log out
+  add_deck: Add deck
+  all_cards: All cards
+  all_decks: All decks
   back: Back
-  edit_card: Edit card
-  new_card: New card
-  show: Show
-  edit: Edit
+  back_to_deck_list: To all decks
+  card_change: Card was changed successfully
+  card_creation: Card was created successfully
+  card_destroy: Card was deleted
+  check_of_knowledge: Test your knowledge
+  count_of_cards: Count of cards
+  create_new_deck: Create new deck
+  current: Current
+  deck: Deck
+  deck_change: Deck was changed successfully
+  deck_creation: Deck was created successfully
+  deck_destroy: Deck was deleted
+  deck_is_not_set: Unable to set current deck
+  decks: Decks
   delete: Delete
   delete_confirmation: Are you sure?
-  edit_deck: Edit deck
-  show_cards: Show cards in the deck
-  back_to_deck_list: To all decks
-  all_decks: All decks
-  current: Current
-  make_current: Make current
-  add_deck: Add deck
-  new_deck: New deck
-  name: Name
-  count_of_cards: Count of cards
-  original_text: Original text
-  translated_text: Translated text
-  review_date: Review date
-  image: Image
-  deck: Deck
-  your_profile: Your profile
-  link_github: Link Github account
-  unlink_github: Unlink Github account
-  registration: Registration
-  registration_question: Are you registered?
-  restore_password: Password recovery
-  send_instructions: Send instructions
-  save_password: Save password
-  send_answer: Answer
   does_not_know_answer: "I don't know"
-  check_of_knowledge: Test your knowledge
-  no_cards: No unchecked cards
-  sign_in: Sign in
-  sign_in_with_github: Sign in with GitHub
+  edit: Edit
+  edit_card: Edit card
+  edit_deck: Edit deck
   forgot_password: Forgot your password?
-  test_user: Test user
-  password: Password
-  create_new_deck: Create new deck
-  number: "#"
-  translate_it: Translate it
-  not_authenticated: Please, sign in
-  card_creation: Card was created successfully
-  card_change: Card was changed successfully
-  card_destroy: Card was deleted
-  deck_creation: Deck was created successfully
-  deck_change: Deck was changed successfully
-  deck_destroy: Deck was deleted
-  set_deck: Current deck is set
-  deck_is_not_set: Unable to set current deck
-  welcome: Welcome!
-  github_account_was_linked: Your GitHub account was linked successfully
-  unable_to_link_github_account: Unable to link your GitHub account
-  github_account_was_unlinked: Your GitHub account was unlinked from your profile
   github_account_is_upsent: "You haven't linked GitHub account"
+  github_account_was_linked: Your GitHub account was linked successfully
+  github_account_was_unlinked: Your GitHub account was unlinked from your profile
+  image: Image
+  instructions_deliver: Instructions have been sent to your email
+  link_github: Link Github account
+  log_in: Log in
+  log_out: Log out
+  log_out_message: You are logged off
+  make_current: Make current
+  mistake_message: You are wrong! Right answer is
+  name: Name
+  new_card: New card
+  new_deck: New deck
+  next_try: You are wrong! Please, try again.
+  no_cards: No unchecked cards
+  no_user: No user with this email
+  not_authenticated: Please, sign in
+  number: "#"
+  original_text: Original text
+  password: Password
+  password_changed: Password changed successfully
+  profile: Profile
+  profile_was_changed: Profile was changed successfully
+  registration: Registration
+  registration_congratulation: Welcome!
+  registration_question: Are you registered?
   registration_with_github_account: You signed up with your GitHub account
   registration_with_github_account_failed: Registration with GitHub account was failed
-  profile_was_changed: Profile was changed successfully
-  registration_congratulation: Welcome!
-  instructions_deliver: Instructions have been sent to your email
-  no_user: No user with this email
-  password_changed: Password changed successfully
+  restore_password: Password recovery
+  review_date: Review date
   right_answer: You are right! This is
+  save_password: Save password
+  send_answer: Answer
+  send_instructions: Send instructions
+  set_deck: Current deck is set
+  show: Show
+  show_cards: Show cards in the deck
+  sign_in: Sign in
+  sign_in_with_github: Sign in with GitHub
+  site_name: Flashcarder
+  test_user: Test user
+  translate_it: Translate it
+  translated_text: Translated text
   typo_message: But you have the typo -
-  mistake_message: You are wrong! Right answer is
-  next_try: You are wrong! Please, try again.
+  unable_to_link_github_account: Unable to link your GitHub account
+  unlink_github: Unlink Github account
+  welcome: Welcome!
   wrong_login: "E-mail or password isn't correct"
-  log_out_message: You are logged off
+  your_profile: Your profile
