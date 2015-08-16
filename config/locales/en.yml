@@ -1,23 +1,82 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  time:
+    formats:
+      default: "%d/%m/%Y, %H:%M"
+      long: "%d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"
+  site_name: Flashcarder
+  All cards: All cards
+  Add card: Add card
+  Decks: Decks
+  Profile: Profile
+  Log in: Log in
+  Log out: Log out
+  Back: Back
+  Edit card: Edit card
+  New card: New card
+  Show: Show
+  Edit: Edit
+  Delete: Delete
+  Are you sure?: Are you sure?
+  Edit deck: Edit deck
+  Show cards: Show cards in the deck
+  To all decks: To all decks
+  All decks: All decks
+  Current: Current
+  Make current: Make current
+  Add deck: Add deck
+  New deck: New deck
+  Name: Name
+  Count of cards: Count of cards
+  Original text: Original text
+  Translated text: Translated text
+  Review date: Review date
+  Image: Image
+  Deck: Deck
+  Your profile: Your profile
+  Link github: Link Github account
+  Unlink github: Unlink Github account
+  Registration: Registration
+  Are you registered?: Are you registered?
+  Restore password: Password recovery
+  Send instructions: Send instructions
+  Save password: Save password
+  Send answer: Answer
+  I don't know: "I don't know"
+  Check of knowledge: Test your knowledge
+  No cards: No unchecked cards
+  Sign in: Sign in
+  Sign in with Github: Sign in with GitHub
+  Forgot password?: Forgot your password?
+  Test user: Test user
+  Password: Password
+  Create new deck: Create new deck
+  Number: "#"
+  Translate it: Translate it
+  Not authenticated: Please, sign in
+  Card creation: Card was created successfully
+  Card change: Card was changed successfully
+  Card destroy: Card was deleted
+  Deck creation: Deck was created successfully
+  Deck change: Deck was changed successfully
+  Deck destroy: Deck was deleted
+  Set deck: Current deck is set
+  Deck is not set: Unable to set current deck
+  Welcome: Welcome!
+  Github account was linked: Your GitHub account was linked successfully
+  Unable to link Github account: Unable to link your GitHub account
+  Github account was unlinked: Your GitHub account was unlinked from your profile
+  Github account is upsent: "You haven't linked GitHub account"
+  Registration with Github account: You signed up with your GitHub account
+  Registration with Github account failed: Registration with GitHub account was failed
+  Profile was changed: Profile was changed successfully
+  Welcome_registration: Welcome!
+  Instructions deliver: Instructions have been sent to your email
+  No user: No user with this email
+  Password changed: Password changed successfully
+  Right answer: You are right! This is
+  You have the typo: But you have the typo -
+  You are wrong: You are wrong! Right answer is
+  Next try: You are wrong! Please, try again.
+  Wrong login: "E-mail or password isn't correct"
+  You log out: You are logged off

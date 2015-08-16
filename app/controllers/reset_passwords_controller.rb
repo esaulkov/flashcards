@@ -9,10 +9,10 @@ class ResetPasswordsController < ApplicationController
     @user = User.find_by_email(reset_params[:email])
     if @user
       @user.deliver_reset_password_instructions!
-      flash[:notice] = "Инструкции были высланы на указанный адрес"
+      flash[:notice] = t("Instructions deliver")
       redirect_to log_in_path
     else
-      flash.now[:error] = "Нет пользователя с таким адресом"
+      flash.now[:error] = t("No user")
       render :new
     end
   end
@@ -26,7 +26,7 @@ class ResetPasswordsController < ApplicationController
 
     @user.password_confirmation = reset_params[:password_confirmation]
     if @user.change_password!(reset_params[:password])
-      flash[:notice] = "Пароль был успешно изменен"
+      flash[:notice] = t("Password changed")
       redirect_to log_in_path
     else
       render :edit

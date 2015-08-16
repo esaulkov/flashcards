@@ -13,7 +13,7 @@ class CardsController < ApplicationController
     @card = current_user.cards.new(card_params)
 
     if @card.save
-      redirect_to cards_path, notice: "Карточка успешно создана"
+      redirect_to cards_path, notice: t("Card creation")
     else
       render :new
     end
@@ -27,7 +27,7 @@ class CardsController < ApplicationController
 
   def update
     if @card.update(card_params)
-      redirect_to cards_path, notice: "Карточка успешно изменена"
+      redirect_to cards_path, notice: t("Card change")
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class CardsController < ApplicationController
 
   def destroy
     @card.destroy
-    redirect_to cards_path, notice: "Карточка удалена"
+    redirect_to cards_path, notice: t("Card destroy")
   end
 
   private

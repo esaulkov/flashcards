@@ -7,16 +7,17 @@ class SessionsController < ApplicationController
     if login(session_params[:email],
              session_params[:password],
              session_params[:remember_me])
-      redirect_back_or_to root_path, notice: "Добро пожаловать!"
+      set_locale
+      redirect_back_or_to root_path, notice: t("Welcome")
     else
-      flash.now[:error] = "Неверный e-mail или пароль"
+      flash.now[:error] = t("Wrong login")
       render :new
     end
   end
 
   def destroy
     logout
-    redirect_to log_in_path, notice: "Вы вышли из системы"
+    redirect_to log_in_path, notice: t("You log out")
   end
 
   private

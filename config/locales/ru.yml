@@ -112,10 +112,77 @@ ru:
           attributes:
             translated_text:
               bad_translate: Исходный текст и перевод должны различаться
+  site_name: Флэшкарточкер
+  All cards: Все карточки
+  Add card: Добавить карточку
+  Decks: Колоды
+  Profile: Профиль
+  Log in: Войти
+  Log out: Выйти
+  Edit card: Редактирование карточки
+  New card: Новая карточка
+  Edit: Редактировать
+  Delete: Удалить
+  Are you sure?: Вы уверены?
+  Edit deck: Редактирование колоды
+  Show cards: Показать карточки
+  To all decks: Назад к списку
+  All decks: Все колоды
+  Current: Текущая
+  Make current: Сделать текущей
+  Add deck: Добавить колоду
+  New deck: Новая колода
+  Name: Название
+  Count of cards: Количество карточек
   Original text: Исходный текст
   Translated text: Перевод текста
   Review date: Пересмотр после
   Image: Изображение
-  Name: Название
-  Count of cards: Количество карточек
   Deck: Колода
+  Your profile: Ваш профиль
+  Link github: Подключить Github аккаунт
+  Unlink github: Отключить Github аккаунт
+  Registration: Регистрация
+  Are you registered?: Уже зарегистрированы?
+  Restore password: Восстановление пароля
+  Send instructions: Выслать инструкции
+  Save password: Сохранить пароль
+  Send answer: Ответить
+  I don't know: Не знаю
+  Check of knowledge: Проверка знаний
+  No cards: Непроверенных карточек нет
+  Sign in: Вход в систему
+  Sign in with Github: Войти с помощью GitHub
+  Forgot password?: Забыли пароль?
+  Test user: Тестовый пользователь
+  Password: Пароль
+  Create new deck: Создать новую колоду
+  Number: №
+  Translate it: Введите перевод
+  Not authenticated: Пожалуйста, пройдите авторизацию
+  Card creation: Карточка успешно создана
+  Card change: Карточка успешно изменена
+  Card destroy: Карточка удалена
+  Deck creation: Колода успешно создана
+  Deck change: Колода успешно изменена
+  Deck destroy: Колода удалена
+  Set deck: Текущая колода не установлена
+  Deck is not set: Не удалось установить текущую колоду
+  Welcome: Добро пожаловать!
+  Github account was linked: Ваш GitHub аккаунт успешно подключен
+  Unable to link Github account: При подключении GitHub аккаунта возникли проблемы
+  Github account was unlinked: Ваш GitHub аккаунт успешно отключен от Вашего профиля
+  Github account is upsent: У Вас нет подключенного GitHub аккаунта
+  Registration with Github account: Вы зарегистрировались при помощи GitHub аккаунта
+  Registration with Github account failed: Не удалось войти с использованием GitHub аккаунта
+  Profile was changed: Профиль успешно изменен
+  Welcome_registration: Поздравляем! Вы зарегистрировались!
+  Instructions deliver: Инструкции были высланы на указанный адрес
+  No user: Нет пользователя с таким адресом
+  Password changed: Пароль был успешно изменен
+  Right answer: Верный ответ! Это
+  You have the typo: Но у Вас опечатка -
+  You are wrong: Вы ошиблись! Правильный ответ -
+  Next try: Вы ошиблись! Попробуйте еще раз.
+  Wrong login: Неверный e-mail или пароль
+  You log out: Вы вышли из системы

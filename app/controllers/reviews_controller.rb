@@ -7,16 +7,16 @@ class ReviewsController < ApplicationController
     @card = Card.find(review_params[:card_id])
     results = @card.check_answer(review_params[:answer])
     if results[:success]
-      flash[:notice] = "Верный ответ! Это #{@card.original_text}."
+      flash[:notice] = "#{t('Right answer')} #{@card.original_text}."
       if results[:typos] > 0
-        flash[:notice] += " Но у Вас опечатка - #{review_params[:answer]}"
+        flash[:notice] += " #{t('You have the typo')} #{review_params[:answer]}"
       end
       redirect_to new_review_path
     elsif @card.attempt > 0
-      flash.now[:error] = "Вы ошиблись! Попробуйте еще раз."
+      flash.now[:error] = t("Next try")
       render :new
     else
-      flash[:error] = "Вы ошиблись! Правильный ответ - #{@card.original_text}"
+      flash[:error] = "#{t('You are wrong')} #{@card.original_text}"
       redirect_to new_review_path
     end
   end

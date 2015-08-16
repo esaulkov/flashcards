@@ -2,16 +2,19 @@
   .col-md-6.col-md-offset-3
     .panel.panel-info
       .panel-heading
-        %h3 Ваш профиль
+        %h3= t "Your profile"
       .panel-body
         = simple_form_for current_user, as: :profile, url: profile_path do |f|
           = f.input :email, autofocus: true
+          = f.input :locale, 
+                    collection: I18n.available_locales, 
+                    include_blank: false
           = f.input :password, autocomplete: "off"
           = f.input :password_confirmation, autocomplete: "off"
           = f.button :submit
         %br
         = image_tag("GitHub-Mark-32px.png")
         - if current_user.has_linked_with?("github")
-          = link_to "Отключить Github аккаунт", delete_oauth_path("github"), method: :delete
+          = link_to t("Unlink github"), delete_oauth_path("github"), method: :delete
         - else
-          = link_to "Подключить Github аккаунт", auth_at_provider_path(provider: "github")
+          = link_to t("Link github"), auth_at_provider_path(provider: "github")

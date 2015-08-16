@@ -11,7 +11,7 @@ describe "Card form" do
     visit new_card_path
     fill_in "Исходный текст", with: "Abracadabra"
     fill_in "Перевод текста", with: "Абракадабра"
-    fill_in "Создать новую колоду:", with: "Новая колода"
+    fill_in "Создать новую колоду", with: "Новая колода"
     click_button "Создать карточку"
     expect(page).to have_content "Новая колода"
   end

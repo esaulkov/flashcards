@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
 
   def update
     if current_user.update(profile_params)
-      flash[:notice] = "Профиль успешно изменен"
+      flash[:notice] = t("Profile was changed")
       redirect_to edit_profile_path
     else
       render :edit
@@ -14,6 +14,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:email, :password, :password_confirmation)
+    params.require(:profile).
+      permit(:email, :locale, :password, :password_confirmation)
   end
 end

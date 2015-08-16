@@ -1,5 +1,9 @@
 %ul.nav.navbar-nav.navbar-right
+  - I18n.available_locales.each do |locale|
+    %li
+      = link_to params.merge(locale: locale, only_path: true) do
+        = image_tag "#{locale}.png", alt: locale
   %li
     = link_to log_in_path do
       %span.glyphicon.glyphicon-log-in
-      = "Войти"
+      = t "Log in"

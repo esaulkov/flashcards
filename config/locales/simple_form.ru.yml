@@ -20,6 +20,7 @@ ru:
       profile:
         password: "Пароль"
         password_confirmation: "Подтверждение пароля"
+        locale: "Локаль"
       session:
         password: "Пароль"
         remember_me: "Запомнить меня"

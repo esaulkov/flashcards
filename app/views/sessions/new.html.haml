@@ -2,22 +2,22 @@
   .col-md-6.col-md-offset-3
     .panel.panel-info
       .panel-heading
-        %h3 Вход в систему
+        %h3= t "Sign in"
       .panel-body
         = simple_form_for :session, url: sessions_path do |f|
           = f.input :email, autofocus: true
           = f.input :password, autocomplete: "off"
           = f.input :remember_me, as: :boolean
-          = f.button :submit, "Войти"
+          = f.button :submit, t("Log in")
         %br
-        = link_to "Войти с помощью GitHub", auth_at_provider_path(provider: :github)
+        = link_to t("Sign in with Github"), auth_at_provider_path(provider: :github)
         %br
-        = link_to "Регистрация", sign_up_path
+        = link_to t("Registration"), sign_up_path
         %br
-        = link_to "Забыли пароль?", new_reset_password_path
+        = link_to t("Forgot password?"), new_reset_password_path
         %hr
-        %u= "Тестовый пользователь:"
+        %u= t("Test user")
         %br
         Email: test@example.com
         %br
-        Пароль: 123456
+        = "#{t('Password')}: 123456"
