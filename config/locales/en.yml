@@ -1,23 +1,98 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  time:
+    formats:
+      default: "%d/%m/%Y, %H:%M"
+      long: "%d %B %Y, %H:%M"
+      short: "%d %b, %H:%M"
+  activerecord:
+    models:
+      card:
+        one: card
+        other: cards
+      user:
+        one: user
+      deck:
+        one: deck
+        other: decks
+    errors:
+      models:
+        card:
+          attributes:
+            translated_text:
+              bad_translate: Original text and translated text should be different
+  add_card: Add card
+  add_deck: Add deck
+  all_cards: All cards
+  all_decks: All decks
+  back: Back
+  back_to_deck_list: To all decks
+  card_change: Card was changed successfully
+  card_creation: Card was created successfully
+  card_destroy: Card was deleted
+  check_of_knowledge: Test your knowledge
+  count_of_cards: Count of cards
+  create_new_deck: Create new deck
+  current: Current
+  deck: Deck
+  deck_change: Deck was changed successfully
+  deck_creation: Deck was created successfully
+  deck_destroy: Deck was deleted
+  deck_is_not_set: Unable to set current deck
+  decks: Decks
+  delete: Delete
+  delete_confirmation: Are you sure?
+  does_not_know_answer: "I don't know"
+  edit: Edit
+  edit_card: Edit card
+  edit_deck: Edit deck
+  forgot_password: Forgot your password?
+  github_account_is_upsent: "You haven't linked GitHub account"
+  github_account_was_linked: Your GitHub account was linked successfully
+  github_account_was_unlinked: Your GitHub account was unlinked from your profile
+  image: Image
+  instructions_deliver: Instructions have been sent to your email
+  link_github: Link Github account
+  log_in: Log in
+  log_out: Log out
+  log_out_message: You are logged off
+  make_current: Make current
+  mistake_message: You are wrong! Right answer is
+  name: Name
+  new_card: New card
+  new_deck: New deck
+  next_try: You are wrong! Please, try again.
+  no_cards: No unchecked cards
+  no_user: No user with this email
+  not_authenticated: Please, sign in
+  number: "#"
+  original_text: Original text
+  password: Password
+  password_changed: Password changed successfully
+  profile: Profile
+  profile_was_changed: Profile was changed successfully
+  registration: Registration
+  registration_congratulation: Welcome!
+  registration_question: Are you registered?
+  registration_with_github_account: You signed up with your GitHub account
+  registration_with_github_account_failed: Registration with GitHub account was failed
+  restore_password: Password recovery
+  review_date: Review date
+  right_answer: You are right! This is
+  save_password: Save password
+  send_answer: Answer
+  send_instructions: Send instructions
+  set_deck: Current deck is set
+  show: Show
+  show_cards: Show cards in the deck
+  sign_in: Sign in
+  sign_in_with_github: Sign in with GitHub
+  site_name: Flashcarder
+  test_user: Test user
+  translate_it: Translate it
+  translated_text: Translated text
+  typo_message: But you have the typo -
+  unable_to_link_github_account: Unable to link your GitHub account
+  unlink_github: Unlink Github account
+  welcome: Welcome!
+  wrong_login: "E-mail or password isn't correct"
+  your_profile: Your profile

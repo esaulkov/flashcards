@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equip" => "Content-Type"}
-    %title Флэшкарточкер
+    %title= t "site_name"
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
@@ -11,6 +11,6 @@
     %section#container
       = render "shared/flash"
       %header.clearfix
-        %h1 Флэшкарточкер
+        %h1= t "site_name"
       %section
         = yield

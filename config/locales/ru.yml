@@ -112,10 +112,79 @@ ru:
           attributes:
             translated_text:
               bad_translate: Исходный текст и перевод должны различаться
-  Original text: Исходный текст
-  Translated text: Перевод текста
-  Review date: Пересмотр после
-  Image: Изображение
-  Name: Название
-  Count of cards: Количество карточек
-  Deck: Колода
+  add_card: Добавить карточку
+  add_deck: Добавить колоду
+  all_cards: Все карточки
+  all_decks: Все колоды
+  back: Назад
+  back_to_deck_list: Назад к списку
+  card_change: Карточка успешно изменена
+  card_creation: Карточка успешно создана
+  card_destroy: Карточка удалена
+  check_of_knowledge: Проверка знаний
+  count_of_cards: Количество карточек
+  create_new_deck: Создать новую колоду
+  current: Текущая
+  deck: Колода
+  deck_change: Колода успешно изменена
+  deck_creation: Колода успешно создана
+  deck_destroy: Колода удалена
+  deck_is_not_set: Не удалось установить текущую колоду
+  decks: Колоды
+  delete: Удалить
+  delete_confirmation: Вы уверены?
+  does_not_know_answer: Не знаю
+  edit: Редактировать
+  edit_card: Редактирование карточки
+  edit_deck: Редактирование колоды
+  forgot_password: Забыли пароль?
+  github_account_is_upsent: У Вас нет подключенного GitHub аккаунта
+  github_account_was_linked: Ваш GitHub аккаунт успешно подключен
+  github_account_was_unlinked: Ваш GitHub аккаунт успешно отключен от Вашего профиля
+  image: Изображение
+  instructions_deliver: Инструкции были высланы на указанный адрес
+  link_github: Подключить Github аккаунт
+  log_in: Войти
+  log_out: Выйти
+  log_out_message: Вы вышли из системы
+  make_current: Сделать текущей
+  mistake_message: Вы ошиблись! Правильный ответ -
+  name: Название
+  new_card: Новая карточка
+  new_deck: Новая колода
+  next_try: Вы ошиблись! Попробуйте еще раз.
+  no_cards: Непроверенных карточек нет
+  no_user: Нет пользователя с таким адресом
+  not_authenticated: Пожалуйста, пройдите авторизацию
+  number: №
+  original_text: Исходный текст
+  password: Пароль
+  password_changed: Пароль был успешно изменен
+  profile: Профиль
+  profile_was_changed: Профиль успешно изменен
+  registration: Регистрация
+  registration_congratulation: Поздравляем! Вы зарегистрировались!
+  registration_question: Уже зарегистрированы?
+  registration_with_github_account: Вы зарегистрировались при помощи GitHub аккаунта
+  registration_with_github_account_failed: Не удалось войти с использованием GitHub аккаунта
+  restore_password: Восстановление пароля
+  review_date: Пересмотр после
+  right_answer: Верный ответ! Это
+  save_password: Сохранить пароль
+  send_answer: Ответить
+  send_instructions: Выслать инструкции
+  set_deck: Текущая колода не установлена
+  show: Показать
+  show_cards: Показать карточки
+  sign_in: Вход в систему
+  sign_in_with_github: Войти с помощью GitHub
+  site_name: Флэшкарточкер
+  test_user: Тестовый пользователь
+  translate_it: Введите перевод
+  translated_text: Перевод текста
+  typo_message: Но у Вас опечатка -
+  unable_to_link_github_account: При подключении GitHub аккаунта возникли проблемы
+  unlink_github: Отключить Github аккаунт
+  welcome: Добро пожаловать!
+  wrong_login: Неверный e-mail или пароль
+  your_profile: Ваш профиль

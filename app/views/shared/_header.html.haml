@@ -2,7 +2,7 @@
   .navbar-inner
     .container-fluid
       .navbar-header
-        = link_to "Флэшкарточкер", root_path, class: "navbar-brand"
+        = link_to t(:site_name), root_path, class: "navbar-brand"
       %div
         - if logged_in?
           = render partial: "shared/user"

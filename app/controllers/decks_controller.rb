@@ -13,7 +13,7 @@ class DecksController < ApplicationController
     @deck = current_user.decks.new(deck_params)
 
     if @deck.save
-      redirect_to decks_path, notice: "Колода успешно создана"
+      redirect_to decks_path, notice: t(:deck_creation)
     else
       render :new
     end
@@ -28,7 +28,7 @@ class DecksController < ApplicationController
 
   def update
     if @deck.update(deck_params)
-      redirect_to deck_path, "Колода успешно изменена"
+      redirect_to deck_path, notice: t(:deck_change)
     else
       render :edit
     end
@@ -36,14 +36,14 @@ class DecksController < ApplicationController
 
   def destroy
     @deck.destroy
-    redirect_to decks_path, notice: "Колода удалена"
+    redirect_to decks_path, notice: t(:deck_destroy)
   end
 
   def set_current
     if current_user.update(current_deck: @deck)
-      flash[:notice] = "Текущая колода установлена"
+      flash[:notice] = t(:set_deck)
     else
-      flash[:error] = "Не удалось установить текущую колоду"
+      flash[:error] = t(:deck_is_not_set)
     end
     redirect_to decks_path
   end

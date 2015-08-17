@@ -47,6 +47,9 @@ gem 'levenshtein-ffi', require: 'levenshtein'
 # Use Whenever for writing cron jobs
 gem 'whenever', require: false
 
+# HTTPAcceptLanguage helps to detect the users preferred language
+gem 'http_accept_language'
+
 gem 'rails_12factor', group: :production
 
 group :development, :test do

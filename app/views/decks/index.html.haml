@@ -1,19 +1,19 @@
-%h3= "Все колоды"
+%h3= t :all_decks
 %table.table.table-striped
   %thead
     %tr
-      %th= t "Name"
-      %th= t "Count of cards"
+      %th= t :name
+      %th= t :count_of_cards
       %th{ colspan: "4" }
   %tbody
     - @decks.each do |deck|
       %tr
         %td= deck.name
         %td= deck.cards.count
-        %td= deck.current? ? "Текущая" : link_to("Сделать текущей", 
+        %td= deck.current? ? t(:current) : link_to(t(:make_current),
                                                   set_current_deck_path(deck),
                                                   method: :put)
-        %td= link_to "Показать", deck_path(deck)
-        %td= link_to "Редактировать", edit_deck_path(deck)
-        %td= link_to "Удалить", deck, method: :delete, data: { confirm: "Вы уверены?" }
-= link_to "Добавить колоду", new_deck_path
+        %td= link_to t(:show), deck_path(deck)
+        %td= link_to t(:edit), edit_deck_path(deck)
+        %td= link_to t(:delete), deck, method: :delete, data: { confirm: t(:delete_confirmation) }
+= link_to t(:add_deck), new_deck_path

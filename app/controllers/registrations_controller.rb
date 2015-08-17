@@ -9,7 +9,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(registration_params)
     if @user.save
       login(registration_params[:email], registration_params[:password])
-      redirect_to root_path, notice: "Поздравляем! Вы зарегистрировались!"
+      redirect_to root_path, notice: t(:registration_congratulation)
     else
       render :new
     end
