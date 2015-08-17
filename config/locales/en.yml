@@ -56,7 +56,7 @@ en:
   log_out: Log out
   log_out_message: You are logged off
   make_current: Make current
-  mistake_message: You are wrong! Right answer is
+  mistake_message: You are wrong! Right answer is %{card_text}
   name: Name
   new_card: New card
   new_deck: New deck
@@ -77,7 +77,7 @@ en:
   registration_with_github_account_failed: Registration with GitHub account was failed
   restore_password: Password recovery
   review_date: Review date
-  right_answer: You are right! This is
+  right_answer: You are right! This is %{card_text}
   save_password: Save password
   send_answer: Answer
   send_instructions: Send instructions
@@ -90,7 +90,7 @@ en:
   test_user: Test user
   translate_it: Translate it
   translated_text: Translated text
-  typo_message: But you have the typo -
+  typo_message: But you have the typo - %{answer}
   unable_to_link_github_account: Unable to link your GitHub account
   unlink_github: Unlink Github account
   welcome: Welcome!
