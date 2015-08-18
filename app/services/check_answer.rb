@@ -1,5 +1,4 @@
 class CheckAnswer
-
   def initialize(params)
     @card = params[:card]
   end
@@ -29,7 +28,7 @@ class CheckAnswer
                    attempt: 0)
       success = false
     end
-    return { success: success, typos: typos }
+    { success: success, typos: typos }
   end
 
   private
@@ -47,7 +46,7 @@ class CheckAnswer
     else
       quality = typos <= text.size ? (text.size / typos).floor : 0
     end
-    return quality
+    quality
   end
 
   def calculate_review_date(repetition, e_factor, quality)
@@ -58,7 +57,7 @@ class CheckAnswer
     else
       repetition = (repetition * e_factor).round
     end
-    return { repetition: repetition, review_date: repetition.days.from_now }
+    { repetition: repetition, review_date: repetition.days.from_now }
   end
 
   def normalize(text)
