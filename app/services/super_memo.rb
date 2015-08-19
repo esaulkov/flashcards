@@ -10,17 +10,15 @@ class SuperMemo
                                 @card.attempt,
                                 answer_time)
     if quality > 2
-      e_factor = find_efactor(@card.e_factor, quality)
-      new_repetition = calculate_repetition_interval(@card.repetition,
-                                                     e_factor,
-                                                     quality)
-      params = { e_factor: e_factor, repetition: new_repetition }
+      params = define_repetition_interval(@card.repetition,
+                                          @card.e_factor,
+                                          quality)
       success = update_card(@card, params)
     elsif @card.attempt < 2
       @card.increment!(:attempt)
       success = false
     else
-      success = update_card(@card, { repetition: 1 })
+      success = update_card(@card, repetition: 1)
     end
     { success: success, typos: typos }
   end
@@ -43,14 +41,16 @@ class SuperMemo
     quality
   end
 
-  def calculate_repetition_interval(repetition, e_factor, quality)
-    repetition == 1 ? 6 : (repetition * e_factor).round
+  def define_repetition_interval(repetition, e_factor, quality)
+    new_efactor = find_efactor(e_factor, quality)
+    interval = repetition == 1 ? 6 : (repetition * new_efactor).round
+    { e_factor: new_efactor, repetition: interval }
   end
 
   # according SM-2 algorithm (http://www.supermemo.com/english/ol/sm2.htm)
   def find_efactor(e_factor, quality)
-      e_factor = e_factor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02))
-      [e_factor, 1.3].max
+    e_factor = e_factor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02))
+    [e_factor, 1.3].max
   end
 
   def update_card(card, params)
