@@ -13,12 +13,14 @@ class SuperMemo
       params = define_repetition_interval(@card.repetition,
                                           @card.e_factor,
                                           quality)
-      success = update_card(@card, params)
+      update_card(@card, params)
+      success = true
     elsif @card.attempt < 2
       @card.increment!(:attempt)
       success = false
     else
-      success = update_card(@card, repetition: 1)
+      update_card(@card, repetition: 1)
+      success = false
     end
     { success: success, typos: typos }
   end
@@ -57,7 +59,6 @@ class SuperMemo
     params[:review_date] = params[:repetition].days.from_now
     params[:attempt] = 0
     card.update(params)
-    params[:e_factor].present?
   end
 
   def normalize(text)
