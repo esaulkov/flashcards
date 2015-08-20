@@ -1,44 +1,26 @@
 class SuperMemo
-  def initialize(card)
-    @card = card
-  end
+  def initialize; end
 
-  def calculate(answer, answer_time)
-    typos = similarity(@card.original_text, answer)
-    quality = quality_of_answer(@card.original_text,
-                                typos,
-                                @card.attempt,
-                                answer_time)
+  def calculate(text, typos, attempt, answer_time, repetition, e_factor)
+    quality = quality_of_answer(text, typos, attempt, answer_time)
     if quality > 2
-      params = define_repetition_interval(@card.repetition,
-                                          @card.e_factor,
-                                          quality)
-      update_card(@card, params)
-      success = true
-    elsif @card.attempt < 2
-      @card.increment!(:attempt)
-      success = false
+      results = define_repetition_interval(repetition, e_factor, quality)
+      results[:success] = true
+      results[:review_date] = results[:repetition].days.from_now
     else
-      update_card(@card, repetition: 1)
-      success = false
+      results = { success: false, repetition: 1, review_date: 1.day.from_now }
     end
-    { success: success, typos: typos }
+    results
   end
 
   private
-
-  def similarity(first_word, second_word)
-    first_word = normalize(first_word)
-    second_word = normalize(second_word)
-    Levenshtein.distance(first_word, second_word)
-  end
 
   def quality_of_answer(text, typos, attempt, answer_time)
     if typos < [text.size / 3.0, 1].max
       quality = 5 - attempt
       quality = [quality - 1, 3].max if answer_time.to_f > 30.0
     else
-      quality = typos <= text.size ? (text.size / typos).floor : 0
+      quality = typos <= text.size ? [(text.size / typos).floor, 2].min : 0
     end
     quality
   end
@@ -53,15 +35,5 @@ class SuperMemo
   def find_efactor(e_factor, quality)
     e_factor = e_factor + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02))
     [e_factor, 1.3].max
-  end
-
-  def update_card(card, params)
-    params[:review_date] = params[:repetition].days.from_now
-    params[:attempt] = 0
-    card.update(params)
-  end
-
-  def normalize(text)
-    text.mb_chars.downcase.strip.wrapped_string
   end
 end

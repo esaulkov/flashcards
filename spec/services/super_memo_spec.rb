@@ -1,152 +1,114 @@
 require "rails_helper"
 
 describe SuperMemo do
-  context "calculate method with right answer" do
-    let!(:card) { create(:card) }
+  context "calculate method" do
+    context "with typos equal zero" do
+      it "increases repetition" do
+        text = "Sehenswürdigkeit"
+        typos = 0
+        attempt = 0
+        answer_time = "12.0"
+        repetition = 6
+        e_factor = 2.5
+        results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+        expect(results[:repetition]).to be > repetition
+      end
 
-    before(:each) { @answer_time = "10.391" }
+      it "increases e-factor" do
+        text = "Sehenswürdigkeit"
+        typos = 0
+        attempt = 0
+        answer_time = "12.0"
+        repetition = 6
+        e_factor = 2.5
+        results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+        expect(results[:e_factor]).to be > e_factor
+      end
 
-    it "returns true if answer is equal to original_text" do
-      answer = "Sehenswürdigkeit"
-      results = SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(results[:success]).to eq true
+      it "returns success = true" do
+        text = "Sehenswürdigkeit"
+        typos = 0
+        attempt = 0
+        answer_time = "12.0"
+        repetition = 6
+        e_factor = 2.5
+        results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+        expect(results[:success]).to eq true
+      end
+
+      context "with repetition equal one" do
+        it "returns repetition = 6" do
+          text = "Sehenswürdigkeit"
+          typos = 0
+          attempt = 0
+          answer_time = "12.0"
+          repetition = 1
+          e_factor = 2.5
+          results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+          expect(results[:repetition]).to eq 6
+        end
+      end
+
+      context "when answer time is more than 30 seconds" do
+        it "decreases quality of answer" do
+          text = "Sehenswürdigkeit"
+          typos = 0
+          attempt = 0
+          answer_time = "31.0"
+          repetition = 1
+          e_factor = 2.5
+          results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+          expect(results[:e_factor]).to eq e_factor
+        end
+      end
     end
 
-    it "updates review_date if answer is equal to original_text" do
-      answer = "Sehenswürdigkeit"
-      SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(card.review_date).to be > DateTime.current
+    context "when typos count is equal or more than text.size / 3" do
+      it "returns success = false" do
+        text = "Zimmer"
+        typos = 2
+        attempt = 0
+        answer_time = "12.0"
+        repetition = 1
+        e_factor = 2.5
+        results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+        expect(results[:success]).to eq false
+      end
+
+      it "returns repetition interval = 1" do
+        text = "Fahrrad"
+        typos = 3
+        attempt = 0
+        answer_time = "12.0"
+        repetition = 1
+        e_factor = 2.5
+        results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+        expect(results[:repetition]).to eq 1
+      end
     end
 
-    it "returns true if answer is in other case" do
-      answer = "seHenswürDigkeit"
-      results = SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(results[:success]).to eq true
+    context "when typos count is less than text.size / 3" do
+      it "returns success = true" do
+        text = "Fahrrad"
+        typos = 2
+        attempt = 0
+        answer_time = "12.0"
+        repetition = 1
+        e_factor = 2.5
+        results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+        expect(results[:success]).to eq true
+      end
     end
 
-    it "returns true if answer ends with blank symbol" do
-      answer = "Sehenswürdigkeit "
-      results = SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(results[:success]).to eq true
-    end
-
-    it "returns true if answer begins with spaces" do
-      answer = "  Sehenswürdigkeit"
-      results = SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(results[:success]).to eq true
-    end
-
-    it "returns true if answer has typo" do
-      answer = "Sehenswurdigkeit"
-      results = SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(results[:success]).to eq true
-    end
-
-    it "returns true if answer has some typos" do
-      card = create(:second_card)
-      answer = "Farad"
-      results = SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(results[:success]).to eq true
-    end
-
-    it "increases repetition interval" do
-      old_repetition = card.repetition
-      answer = "Sehenswürdigkeit"
-      SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(card.repetition).to be > old_repetition
-    end
-
-    it "increases E-Factor attribute if attempt is equal zero" do
-      old_efactor = card.e_factor
-      answer = "Sehenswürdigkeit"
-      SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(card.e_factor).to be > old_efactor
-    end
-
-    it "does not change E-Factor attribute if attempt is equal one" do
-      old_efactor = card.e_factor
-      card.update_attributes(attempt: 1)
-      answer = "Sehenswürdigkeit"
-      SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(card.e_factor).to eq old_efactor
-    end
-
-    it "decreases E-Factor attribute if attempt is equal two" do
-      old_efactor = card.e_factor
-      card.update_attributes(attempt: 2)
-      answer = "Sehenswürdigkeit"
-      SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(card.e_factor).to be < old_efactor
-    end
-
-    it "decreases quality of answer if answer time is more than 30 seconds" do
-      old_efactor = card.e_factor
-      answer = "Sehenswürdigkeit"
-      answer_time = "31.0"
-      SuperMemo.new(card).calculate(answer, answer_time)
-      expect(card.e_factor).to eq old_efactor
-    end
-  end
-
-  context "calculate method with wrong answer" do
-    let!(:card) { create(:card) }
-
-    before(:each) { @answer_time = "10.391" }
-
-    it "returns false if answer is not equal to original_text" do
-      answer = "Sight"
-      results = SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(results[:success]).to eq false
-    end
-
-    it "returns false if answer has too much typos" do
-      card = create(:second_card)
-      answer = "Farade"
-      results = SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(results[:success]).to eq false
-    end
-
-    it "returns false if answer has typo but word is simple" do
-      card = create(:card, original_text: "Акула", translated_text: "Hai")
-      answer = "Hay"
-      results = SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(results[:success]).to eq false
-    end
-
-    it "increases attempt field if it is less than two" do
-      attempt_backup = card.attempt
-      answer = "Sight"
-      SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(card.attempt).to eq (attempt_backup + 1)
-    end
-
-    it "clears attempt field if it is equal two" do
-      card.update_attributes(attempt: 2)
-      answer = "Sight"
-      SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(card.attempt).to eq 0
-    end
-
-    it "does not update review_date if attempt is less than three" do
-      old_review_date = card.review_date
-      answer = "Sight"
-      SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(card.review_date).to eq old_review_date
-    end
-
-    it "sets repetition interval to one" do
-      card.update_attributes(repetition: 3, attempt: 2)
-      answer = "Sight"
-      SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(card.repetition).to eq 1
-    end
-
-    it "does not update E-Factor attribute" do
-      old_efactor = card.e_factor
-      card.update_attributes(attempt: 2)
-      answer = "Sight"
-      SuperMemo.new(card).calculate(answer, @answer_time)
-      expect(card.e_factor).to eq old_efactor
+    it "does not change e-factor less than 1.3" do
+      text = "Fahrrad"
+      typos = 0
+      attempt = 2
+      answer_time = "12.0"
+      repetition = 1
+      e_factor = 1.4
+      results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+      expect(results[:e_factor]).to eq 1.3
     end
   end
 end
