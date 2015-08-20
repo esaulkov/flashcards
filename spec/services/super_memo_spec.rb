@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe SuperMemo do
+  let (:object) { SuperMemo.new }
+
   context "calculate method" do
     context "with typos equal zero" do
       it "increases repetition" do
@@ -10,7 +12,7 @@ describe SuperMemo do
         answer_time = "12.0"
         repetition = 6
         e_factor = 2.5
-        results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+        results = object.calculate(text, typos, attempt, answer_time, repetition, e_factor)
         expect(results[:repetition]).to be > repetition
       end
 
@@ -21,7 +23,7 @@ describe SuperMemo do
         answer_time = "12.0"
         repetition = 6
         e_factor = 2.5
-        results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+        results = object.calculate(text, typos, attempt, answer_time, repetition, e_factor)
         expect(results[:e_factor]).to be > e_factor
       end
 
@@ -32,7 +34,7 @@ describe SuperMemo do
         answer_time = "12.0"
         repetition = 6
         e_factor = 2.5
-        results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+        results = object.calculate(text, typos, attempt, answer_time, repetition, e_factor)
         expect(results[:success]).to eq true
       end
 
@@ -44,7 +46,7 @@ describe SuperMemo do
           answer_time = "12.0"
           repetition = 1
           e_factor = 2.5
-          results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+          results = object.calculate(text, typos, attempt, answer_time, repetition, e_factor)
           expect(results[:repetition]).to eq 6
         end
       end
@@ -57,7 +59,7 @@ describe SuperMemo do
           answer_time = "31.0"
           repetition = 1
           e_factor = 2.5
-          results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+          results = object.calculate(text, typos, attempt, answer_time, repetition, e_factor)
           expect(results[:e_factor]).to eq e_factor
         end
       end
@@ -71,7 +73,7 @@ describe SuperMemo do
         answer_time = "12.0"
         repetition = 1
         e_factor = 2.5
-        results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+        results = object.calculate(text, typos, attempt, answer_time, repetition, e_factor)
         expect(results[:success]).to eq false
       end
 
@@ -82,7 +84,7 @@ describe SuperMemo do
         answer_time = "12.0"
         repetition = 1
         e_factor = 2.5
-        results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+        results = object.calculate(text, typos, attempt, answer_time, repetition, e_factor)
         expect(results[:repetition]).to eq 1
       end
     end
@@ -95,7 +97,7 @@ describe SuperMemo do
         answer_time = "12.0"
         repetition = 1
         e_factor = 2.5
-        results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+        results = object.calculate(text, typos, attempt, answer_time, repetition, e_factor)
         expect(results[:success]).to eq true
       end
     end
@@ -107,7 +109,7 @@ describe SuperMemo do
       answer_time = "12.0"
       repetition = 1
       e_factor = 1.4
-      results = SuperMemo.new.calculate(text, typos, attempt, answer_time, repetition, e_factor)
+      results = object.calculate(text, typos, attempt, answer_time, repetition, e_factor)
       expect(results[:e_factor]).to eq 1.3
     end
   end
