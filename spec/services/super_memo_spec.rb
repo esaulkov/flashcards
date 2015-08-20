@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe SuperMemo do
-  let (:object) { SuperMemo.new }
+  let(:object) { SuperMemo.new }
 
   context "calculate method" do
     context "with typos equal zero" do

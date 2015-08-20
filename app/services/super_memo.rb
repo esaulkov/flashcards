@@ -1,6 +1,4 @@
 class SuperMemo
-  def initialize; end
-
   def calculate(text, typos, attempt, answer_time, repetition, e_factor)
     quality = quality_of_answer(text, typos, attempt, answer_time)
     if quality > 2

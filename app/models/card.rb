@@ -23,12 +23,10 @@ class Card < ActiveRecord::Base
                                       e_factor)
     success = results.delete(:success)
     results[:attempt] = 0
-    if success
+    if success || attempt >= 2
       update(results)
-    elsif attempt < 2
+    else attempt < 2
       self.increment!(:attempt)
-    else
-      update(results)
     end
     { success: success, typos: typos }
   end
