@@ -48,7 +48,7 @@ Rails.application.configure do
     port: 587,
     user_name: ENV["MANDRILL_USERNAME"],
     password: ENV["MANDRILL_APIKEY"],
-    authentication: :plain    
+    authentication: :plain
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
