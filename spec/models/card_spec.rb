@@ -20,129 +20,124 @@ describe Card do
 
   context "check_answer method with right answer" do
     let!(:card) { create(:card) }
-
-    def check_time_period(basket)
-      card.update_attributes(basket: basket)
-      answer = "Sehenswürdigkeit"
-      card.check_answer(answer)
-    end
+    before(:each) { @answer_time = "10.0" }
 
     it "updates review_date if answer is equal to original_text" do
       answer = "Sehenswürdigkeit"
-      card.check_answer(answer)
+      card.check_answer(answer, @answer_time)
       expect(card.review_date).to be > DateTime.current
-    end
-
-    it "updates review_date by different time" do
-      (0..5).to_a.each do |basket|
-        check_time_period(basket)
-        basket = basket + 1 if basket < 5
-        time_period = Card::OPTIONS[basket].days.from_now
-        expect(card.review_date).to be_within(1.second).of time_period
-      end
     end
 
     it "returns true if answer is equal to original_text" do
       answer = "Sehenswürdigkeit"
-      expect(card.check_answer(answer)[:success]).to eq true
+      expect(card.check_answer(answer, @answer_time)[:success]).to eq true
     end
 
     it "returns true if answer is in other case" do
       answer = "seHenswürDigkeit"
-      expect(card.check_answer(answer)[:success]).to eq true
+      expect(card.check_answer(answer, @answer_time)[:success]).to eq true
     end
 
     it "returns true if answer ends with blank symbol" do
       answer = "Sehenswürdigkeit "
-      expect(card.check_answer(answer)[:success]).to eq true
+      expect(card.check_answer(answer, @answer_time)[:success]).to eq true
     end
 
     it "returns true if answer begins with spaces" do
       answer = "  Sehenswürdigkeit"
-      expect(card.check_answer(answer)[:success]).to eq true
+      expect(card.check_answer(answer, @answer_time)[:success]).to eq true
     end
 
     it "returns true if answer has typo" do
       answer = "Sehenswurdigkeit"
-      expect(card.check_answer(answer)[:success]).to eq true
+      expect(card.check_answer(answer, @answer_time)[:success]).to eq true
     end
 
     it "returns true if answer has some typos" do
       card = create(:second_card)
       answer = "Farad"
-      expect(card.check_answer(answer)[:success]).to eq true
+      expect(card.check_answer(answer, @answer_time)[:success]).to eq true
     end
 
-    it "increases basket field if answer is right" do
-      old_basket = card.basket
+    it "increases E-Factor attribute if attempt is equal zero" do
+      old_efactor = card.e_factor
       answer = "Sehenswürdigkeit"
-      card.check_answer(answer)
-      expect(card.basket).to eq (old_basket + 1)
+      card.check_answer(answer, @answer_time)
+      expect(card.e_factor).to be > old_efactor
     end
 
-    it "doesn't increase basket field if it has max value" do
-      card.update_attributes(basket: Card::OPTIONS.size - 1)
-      old_basket = card.basket
+    it "does not change E-Factor attribute if attempt is equal one" do
+      old_efactor = card.e_factor
+      card.update_attributes(attempt: 1)
       answer = "Sehenswürdigkeit"
-      card.check_answer(answer)
-      expect(card.basket).to eq old_basket
+      card.check_answer(answer, @answer_time)
+      expect(card.e_factor).to eq old_efactor
+    end
+
+    it "decreases E-Factor attribute if attempt is equal two" do
+      old_efactor = card.e_factor
+      card.update_attributes(attempt: 2)
+      answer = "Sehenswürdigkeit"
+      card.check_answer(answer, @answer_time)
+      expect(card.e_factor).to be < old_efactor
     end
   end
 
   context "check_answer method with wrong answer" do
     let!(:card) { create(:card) }
+    before(:each) { @answer_time = "10.0" }
 
-    it "does not update review_date if answer is not equal to original_text" do
-      review_date = card.review_date
+    it "does not update review_date if attempt is less than two" do
+      old_review_date = card.review_date
       answer = "Sight"
-      card.check_answer(answer)
-      expect(card.review_date).to eq review_date
+      card.check_answer(answer, @answer_time)
+      expect(card.review_date).to eq old_review_date
     end
 
     it "returns false if answer is not equal to original_text" do
       answer = "Sight"
-      expect(card.check_answer(answer)[:success]).to eq false
+      expect(card.check_answer(answer, @answer_time)[:success]).to eq false
     end
 
     it "returns false if answer has too much typos" do
       card = create(:second_card)
       answer = "Farade"
-      expect(card.check_answer(answer)[:success]).to eq false
+      expect(card.check_answer(answer, @answer_time)[:success]).to eq false
     end
 
     it "returns false if answer has typo but word is simple" do
       card = create(:card, original_text: "Акула", translated_text: "Hai")
       answer = "Hay"
-      expect(card.check_answer(answer)[:success]).to eq false
+      expect(card.check_answer(answer, @answer_time)[:success]).to eq false
     end
 
     it "increases attempt field if it is less than two and answer is wrong" do
       attempt_backup = card.attempt
       answer = "Sight"
-      card.check_answer(answer)
+      card.check_answer(answer, @answer_time)
       expect(card.attempt).to eq (attempt_backup + 1)
     end
 
     it "clears attempt field if it is equal two and answer is wrong" do
       card.update_attributes(attempt: 2)
       answer = "Sight"
-      card.check_answer(answer)
+      card.check_answer(answer, @answer_time)
       expect(card.attempt).to eq 0
     end
 
-    it "decreases basket field if attempt field is equal two" do
-      card.update_attributes(attempt: 2, basket: 3)
-      old_basket = card.basket
+    it "sets repetition interval to one" do
+      card.update_attributes(repetition: 3, attempt: 2)
       answer = "Sight"
-      card.check_answer(answer)
-      expect(card.basket).to eq (old_basket - 2)
+      card.check_answer(answer, @answer_time)
+      expect(card.repetition).to eq 1
     end
 
-    it "clears basket field if it is less than two" do
-      card.update_attributes(attempt: 2, basket: 1)
+    it "does not update E-Factor attribute" do
+      old_efactor = card.e_factor
+      card.update_attributes(attempt: 2)
       answer = "Sight"
-      card.check_answer(answer)
-      expect(card.basket).to eq 0
+      card.check_answer(answer, @answer_time)
+      expect(card.e_factor).to eq old_efactor
     end
   end
 end

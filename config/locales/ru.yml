@@ -148,7 +148,7 @@ ru:
   log_out: Выйти
   log_out_message: Вы вышли из системы
   make_current: Сделать текущей
-  mistake_message: Вы ошиблись! Правильный ответ -
+  mistake_message: Вы ошиблись! Правильный ответ - %{card_text}
   name: Название
   new_card: Новая карточка
   new_deck: Новая колода
@@ -169,11 +169,11 @@ ru:
   registration_with_github_account_failed: Не удалось войти с использованием GitHub аккаунта
   restore_password: Восстановление пароля
   review_date: Пересмотр после
-  right_answer: Верный ответ! Это
+  right_answer: Верный ответ! Это %{card_text}
   save_password: Сохранить пароль
   send_answer: Ответить
   send_instructions: Выслать инструкции
-  set_deck: Текущая колода не установлена
+  set_deck: Текущая колода установлена
   show: Показать
   show_cards: Показать карточки
   sign_in: Вход в систему
@@ -182,7 +182,7 @@ ru:
   test_user: Тестовый пользователь
   translate_it: Введите перевод
   translated_text: Перевод текста
-  typo_message: Но у Вас опечатка -
+  typo_message: Но у Вас опечатка - %{answer}
   unable_to_link_github_account: При подключении GitHub аккаунта возникли проблемы
   unlink_github: Отключить Github аккаунт
   welcome: Добро пожаловать!

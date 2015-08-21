@@ -1,6 +1,4 @@
 class Card < ActiveRecord::Base
-  OPTIONS = [0, 0.5, 3, 7, 14, 30]
-
   belongs_to :deck
   has_attached_file :image,
                     styles: { original: "360x360#", thumb: "100x100#" }
@@ -15,20 +13,22 @@ class Card < ActiveRecord::Base
   scope :expired, -> { where("review_date <= ?", DateTime.current) }
   scope :random, -> { offset(rand(Card.expired.count)) }
 
-  def check_answer(answer)
+  def check_answer(answer, answer_time)
     typos = similarity(original_text, answer)
-    if answer_is_correct?(original_text, typos)
-      new_basket = [basket + 1, OPTIONS.size - 1].min
-      update_review(new_basket)
-      return { success: true, typos: typos }
-    elsif attempt < 2
+    results = SuperMemo.new.calculate(original_text,
+                                      typos,
+                                      attempt,
+                                      answer_time,
+                                      repetition,
+                                      e_factor)
+    success = results.delete(:success)
+    results[:attempt] = 0
+    if success || attempt >= 2
+      update(results)
+    else attempt < 2
       self.increment!(:attempt)
-      return { success: false, typos: typos }
-    else
-      new_basket = [basket - 2, 0].max
-      update_review(new_basket)
-      return { success: false, typos: typos }
     end
+    { success: success, typos: typos }
   end
 
   protected
@@ -37,18 +37,7 @@ class Card < ActiveRecord::Base
     self.review_date = DateTime.current
   end
 
-  def update_review(new_basket)
-    time_period = OPTIONS[new_basket].days.from_now
-    update(basket: new_basket, review_date: time_period, attempt: 0)
-  end
-
   private
-
-  def check_translate
-    if normalize(original_text) == normalize(translated_text)
-      errors.add(:translated_text, :bad_translate)
-    end
-  end
 
   def similarity(first_word, second_word)
     first_word = normalize(first_word)
@@ -56,8 +45,10 @@ class Card < ActiveRecord::Base
     Levenshtein.distance(first_word, second_word)
   end
 
-  def answer_is_correct?(text, typos)
-    typos < [text.size / 3.0, 1].max
+  def check_translate
+    if normalize(original_text) == normalize(translated_text)
+      errors.add(:translated_text, :bad_translate)
+    end
   end
 
   def normalize(text)
