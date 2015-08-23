@@ -169,7 +169,7 @@ ru:
   registration_with_github_account_failed: Не удалось войти с использованием GitHub аккаунта
   restore_password: Восстановление пароля
   review_date: Пересмотр после
-  right_answer: Верный ответ! Это %{card_text}
+  right_answer: Верный ответ! Это %{card_text}.
   save_password: Сохранить пароль
   send_answer: Ответить
   send_instructions: Выслать инструкции
@@ -182,7 +182,7 @@ ru:
   test_user: Тестовый пользователь
   translate_it: Введите перевод
   translated_text: Перевод текста
-  typo_message: Но у Вас опечатка - %{answer}
+  typo_message: " Но у Вас опечатка - %{answer}"
   unable_to_link_github_account: При подключении GitHub аккаунта возникли проблемы
   unlink_github: Отключить Github аккаунт
   welcome: Добро пожаловать!

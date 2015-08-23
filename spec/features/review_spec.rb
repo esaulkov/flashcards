@@ -1,10 +1,10 @@
 require "rails_helper"
 
 describe "Review a card" do
-  before(:all) do
+  before(:each) do
     @user = create(:user, password: "abracadabra")
+    login(@user, "abracadabra")
   end
-  before(:each) { login(@user, "abracadabra") }
 
   let!(:deck) { create(:deck, user_id: @user.id) }
   let!(:card) { create(:card, deck_id: deck.id) }
@@ -61,39 +61,39 @@ describe "Review a card" do
   context "send an answer" do
     before(:each) { visit root_path }
 
-    it "shows success message if answer is right" do
+    it "shows success message if answer is right", js: true do
       fill_in "review_answer", with: "Sehenswürdigkeit"
       click_button "Ответить"
       expect(page).to have_content "Верный ответ!"
     end
-    it "shows error message if answer is wrong" do
+    it "shows error message if answer is wrong", js: true do
       fill_in "review_answer", with: "Denkmal"
       click_button "Ответить"
       expect(page).to have_content "Вы ошиблись!"
     end
-    it "shows card one more time if answer is wrong" do
+    it "shows card one more time if answer is wrong", js: true do
       card.update_attributes(attempt: 1)
       fill_in "review_answer", with: "Denkmal"
       click_button "Ответить"
       expect(page).to have_content "Достопримечательность"
     end
-    it "shows right answer if answer is wrong" do
+    it "shows right answer if answer is wrong", js: true do
       card.update_attributes(attempt: 2)
       fill_in "review_answer", with: "Denkmal"
       click_button "Ответить"
       expect(page).to have_content "Sehenswürdigkeit"
     end
-    it "shows success message if answer has misprint" do
+    it "shows success message if answer has misprint", js: true do
       fill_in "review_answer", with: "Sehenswurdigkeit"
       click_button "Ответить"
       expect(page).to have_content "Верный ответ!"
     end
-    it "shows misprint message if answer has misprint" do
+    it "shows misprint message if answer has misprint", js: true do
       fill_in "review_answer", with: "Sehenswurdigkeit"
       click_button "Ответить"
       expect(page).to have_content "опечатка"
     end
-    it "doesn't updates review_date if answer missed" do
+    it "doesn't updates review_date if answer missed", js: true do
       click_link "Не знаю"
       expect(page).to have_content "Достопримечательность"
     end
