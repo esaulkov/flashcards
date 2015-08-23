@@ -7,3 +7,5 @@ before_script:
   - cp config/database.yml.travis config/database.yml
   - psql -c 'create database flashcards_test;' -U postgres
   - cp .env.travis .env
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
