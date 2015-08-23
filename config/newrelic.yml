@@ -1,0 +1,23 @@
+common: &default_settings
+  # Your application name. Renaming here affects where data displays in New
+  # Relic.
+  app_name: Flashcards
+
+  # Logging level for log/newrelic_agent.log
+  log_level: info
+
+development:
+  <<: *default_settings
+  app_name: Flashcards (Development)
+
+  # NOTE: There is substantial overhead when running in developer mode.
+  # Do not use for production or load testing.
+  developer_mode: true
+
+test:
+  <<: *default_settings
+  # It doesn't make sense to report to New Relic from automated test runs.
+  monitor_mode: false
+
+production:
+  <<: *default_settings

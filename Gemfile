@@ -50,6 +50,12 @@ gem 'whenever', require: false
 # HTTPAcceptLanguage helps to detect the users preferred language
 gem 'http_accept_language'
 
+# Use Rollbar for exception notifications
+gem 'rollbar', '~> 2.1.1'
+
+# Use NewRelic for application monitoring
+gem 'newrelic_rpm'
+
 gem 'rails_12factor', group: :production
 
 group :development, :test do
