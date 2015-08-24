@@ -10,19 +10,18 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       format.js do
         if results[:success]
-          flash.now[:notice] = t(:right_answer,
-                                 card_text: @card.original_text)
+          flash[:notice] = t(:right_answer, card_text: @card.original_text)
           if results[:typos] > 0
-            flash.now[:notice] += t(:typo_message,
-                                    answer: review_params[:answer])
+            flash[:notice] += t(:typo_message, answer: review_params[:answer])
           end
-          @card = current_user.card_for_review
+          redirect_to new_review_path
+          # @card = current_user.card_for_review
         elsif @card.attempt > 0
           flash.now[:error] = t(:next_try)
         else
-          flash.now[:error] = t(:mistake_message,
-                                card_text: @card.original_text)
-          @card = current_user.card_for_review
+          flash[:error] = t(:mistake_message, card_text: @card.original_text)
+          # @card = current_user.card_for_review
+          redirect_to new_review_path
         end
       end
     end
