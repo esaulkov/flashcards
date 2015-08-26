@@ -10,7 +10,7 @@
       class: "form-control"
     %br
     = f.button :submit, t(:send_answer), class: "btn-info"
-    = link_to new_review_path, remote: true, class: "btn btn-warning" do
+    = link_to new_review_path, remote: true, class: "btn btn-warning", id: "new_card" do
       = t(:does_not_know_answer)
 - else
   %p= t :no_cards

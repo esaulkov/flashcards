@@ -1,2 +1,3 @@
-$(".card").html("#{j(render partial: 'review', locals: {card: @card})}")
 $("#flash").html("#{j render 'shared/flash'}")
+- if @results[:success]
+  $("#new_card").click()
