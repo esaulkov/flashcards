@@ -8,16 +8,19 @@ class ReviewsController < ApplicationController
     @results = @card.check_answer(review_params[:answer],
                                   review_params[:answer_time])
     respond_to do |format|
-      format.js do
+      format.json do
         if @results[:success]
-          flash.now[:notice] = t(:right_answer, card_text: @card.original_text)
+          notice = t(:right_answer, card_text: @card.original_text)
           if @results[:typos] > 0
-            flash.now[:notice] += t(:typo_message, answer: review_params[:answer])
+            notice += t(:typo_message, answer: review_params[:answer])
           end
+          render json: { message: notice, result: true }
         elsif @card.attempt > 0
-          flash.now[:error] = t(:next_try)
+          error = t(:next_try)
+          render json: { message: error, reload: false, result: false }
         else
-          flash.now[:error] = t(:mistake_message, card_text: @card.original_text)
+          error = t(:mistake_message, card_text: @card.original_text)
+          render json: { message: error, reload: true, result: false }
         end
       end
     end
