@@ -1,4 +1,4 @@
-calculateTime = (startTime) -> 
+calculateTime = (startTime) ->
   finalTime = $.now()
   answerTime = (finalTime - startTime) / 1000
   $('<input />').attr('type', 'hidden')
@@ -12,7 +12,7 @@ checkAnswer = ->
     e.preventDefault()
     calculateTime(startTime)
     sendRequest = $.post("reviews", $('#review_form').serialize(), null, "json")
-    sendRequest.done (data)->
+    sendRequest.done (data) ->
       if data.result
         $("#flash").empty().append(
           $('<div />').attr('class', 'alert alert-info fade in').append(
