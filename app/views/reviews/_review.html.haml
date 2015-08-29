@@ -1,0 +1,16 @@
+- if card.present?
+  %h4= card.translated_text
+  = image_tag card.image.url
+  %br
+  %br
+  = simple_form_for card, as: :review, url: reviews_path, html: { method: :post, id: "review_form" } do |f|
+    = hidden_field_tag "review[card_id]", card.id
+    = label_tag "review[answer]", t(:translate_it)
+    = text_field_tag "review[answer]", nil, autocomplete: "off",
+      class: "form-control"
+    %br
+    = f.button :submit, t(:send_answer), class: "btn-info"
+    = link_to new_review_path, remote: true, class: "btn btn-warning" do
+      = t(:does_not_know_answer)
+- else
+  %p= t :no_cards

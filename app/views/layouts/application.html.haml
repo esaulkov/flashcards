@@ -4,12 +4,13 @@
     %meta{:content => "text/html; charset=UTF-8", "http-equip" => "Content-Type"}
     %title= t "site_name"
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => false
     = csrf_meta_tags
   %body
-    = render 'shared/header'
+    = render "shared/header"
     %section#container
-      = render "shared/flash"
+      .row#flash
+        = render "shared/flash"
       %header.clearfix
         %h1= t "site_name"
       %section

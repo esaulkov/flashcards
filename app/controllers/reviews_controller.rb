@@ -5,20 +5,24 @@ class ReviewsController < ApplicationController
 
   def create
     @card = Card.find(review_params[:card_id])
-    results = @card.check_answer(review_params[:answer],
-                                 review_params[:answer_time])
-    if results[:success]
-      flash[:notice] = t(:right_answer, card_text: @card.original_text)
-      if results[:typos] > 0
-        flash[:notice] += t(:typo_message, answer: review_params[:answer])
+    @results = @card.check_answer(review_params[:answer],
+                                  review_params[:answer_time])
+    respond_to do |format|
+      format.json do
+        if @results[:success]
+          notice = t(:right_answer, card_text: @card.original_text)
+          if @results[:typos] > 0
+            notice += t(:typo_message, answer: review_params[:answer])
+          end
+          render json: { message: notice, result: true }
+        elsif @card.attempt > 0
+          error = t(:next_try)
+          render json: { message: error, reload: false, result: false }
+        else
+          error = t(:mistake_message, card_text: @card.original_text)
+          render json: { message: error, reload: true, result: false }
+        end
       end
-      redirect_to new_review_path
-    elsif @card.attempt > 0
-      flash.now[:error] = t(:next_try)
-      render :new
-    else
-      flash[:error] = t(:mistake_message, card_text: @card.original_text)
-      redirect_to new_review_path
     end
   end
 
