@@ -1,9 +1,0 @@
-.row
-  .col-md-6.col-md-offset-3
-    .panel.panel-info
-      .panel-heading
-        %h3= t :restore_password
-      .panel-body
-        = simple_form_for :reset, url: reset_passwords_path, method: :post do |f|
-          = f.input :email, autofocus: true
-          = f.button :submit, t(:send_instructions)

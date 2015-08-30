@@ -1,9 +1,0 @@
-.col-md-8.col-md-offset-2
-  .panel.panel-primary
-    .panel-heading
-      %h3= t :new_card
-    .panel-body
-      .row
-        = render partial: "form", locals: { card: @card }
-        .col-md-12
-          = link_to t(:back), cards_path

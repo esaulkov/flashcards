@@ -9,11 +9,11 @@ describe "User authorization" do
       expect(page).to have_content "Пожалуйста, пройдите авторизацию"
     end
     it "redirects to login page from cards page" do
-      visit cards_path
+      visit dashboard_cards_path
       expect(page).to have_content "Пожалуйста, пройдите авторизацию"
     end
     it "redirects to login page from profile page" do
-      visit edit_profile_path
+      visit edit_dashboard_profile_path
       expect(page).to have_content "Пожалуйста, пройдите авторизацию"
     end
     it "redirects to main page after authorization" do
@@ -21,7 +21,7 @@ describe "User authorization" do
       expect(page).to have_content "Проверка знаний"
     end
     it "remembers last page before authorization" do
-      visit edit_profile_path
+      visit edit_dashboard_profile_path
       login(@user, "abracadabra")
       expect(page).to have_content "Ваш профиль"
     end
@@ -33,13 +33,13 @@ describe "User authorization" do
 
   context "restore password" do
     it "send a letter" do
-      visit new_reset_password_path
+      visit new_home_reset_password_path
       fill_in "reset_email", with: @user.email
       click_button "Выслать инструкции"
       expect(ActionMailer::Base.deliveries.count).to eql(1)
     end
     it "send a letter from no-reply@my-flashcards.com" do
-      visit new_reset_password_path
+      visit new_home_reset_password_path
       fill_in "reset_email", with: @user.email
       click_button "Выслать инструкции"
       mail = ActionMailer::Base.deliveries[0]

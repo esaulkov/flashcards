@@ -1,0 +1,9 @@
+.col-md-8.col-md-offset-2
+  .panel.panel-primary
+    .panel-heading
+      %h3= t :new_deck
+    .panel-body
+      .row
+        = render partial: "form", locals: { deck: @deck }
+        .col-md-12
+          = link_to t(:back_to_deck_list), dashboard_decks_path

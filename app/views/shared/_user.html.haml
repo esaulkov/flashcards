@@ -1,15 +1,15 @@
 %ul.nav.navbar-nav.navbar-right
   %li
-    = link_to t(:all_cards), cards_path
+    = link_to t(:all_cards), dashboard_cards_path
   %li
-    = link_to t(:add_card), new_card_path
+    = link_to t(:add_card), new_dashboard_card_path
   %li
-    = link_to t(:decks), decks_path
+    = link_to t(:decks), dashboard_decks_path
   %li
-    = link_to edit_profile_path do
+    = link_to edit_dashboard_profile_path do
       %span.glyphicon.glyphicon-user
       = t :profile
   %li
-    = link_to log_out_path, method: :delete do
+    = link_to dashboard_log_out_path, method: :delete do
       %span.glyphicon.glyphicon-log-out
       = t :log_out
