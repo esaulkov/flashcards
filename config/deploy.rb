@@ -5,7 +5,7 @@ set :application, "flashcards"
 set :repo_url, "git@github.com:esaulkov/flashcards.git"
 set :branch, "twentieth-task"
 set :user, "deploy"
-set :deploy_to, "/home/#{user}/#{application}"
+set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
 
 set :pty, true
 set :log_level, :info
