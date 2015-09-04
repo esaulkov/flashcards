@@ -56,13 +56,20 @@ gem 'rollbar', '~> 2.1.1'
 # Use NewRelic for application monitoring
 gem 'newrelic_rpm'
 
-gem 'rails_12factor', group: :production
+# gem 'rails_12factor', group: :production
+gem 'dotenv-rails'
 
 group :development, :test do
   # Spring speeds up development by keeping your application running in the background.
   # Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'dotenv-rails'
+end
+
+group :development do
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-puma'
 end
 
 group :test do
@@ -73,4 +80,8 @@ group :test do
   gem 'database_cleaner'
   gem 'faker'
   gem 'codeclimate-test-reporter', require: nil
+end
+
+group :production do
+  gem 'puma'
 end
