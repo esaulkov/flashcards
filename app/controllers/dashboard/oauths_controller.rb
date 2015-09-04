@@ -1,4 +1,4 @@
-class Dashboard::OauthsController < Dashboard::ApplicationController
+class Dashboard::OauthsController < Dashboard::BaseController
   def destroy
     provider = params[:provider]
 

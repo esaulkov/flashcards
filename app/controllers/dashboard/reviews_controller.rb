@@ -1,4 +1,4 @@
-class Dashboard::ReviewsController < Dashboard::ApplicationController
+class Dashboard::ReviewsController < Dashboard::BaseController
   def new
     @card = current_user.card_for_review
   end

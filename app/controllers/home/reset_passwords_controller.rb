@@ -1,4 +1,4 @@
-class Home::ResetPasswordsController < Home::ApplicationController
+class Home::ResetPasswordsController < Home::BaseController
   before_action :set_user, only: [:edit, :update]
 
   def new

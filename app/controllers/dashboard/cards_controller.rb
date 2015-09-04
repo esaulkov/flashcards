@@ -1,4 +1,4 @@
-class Dashboard::CardsController < Dashboard::ApplicationController
+class Dashboard::CardsController < Dashboard::BaseController
   before_action :set_card, only: [:show, :edit, :update, :destroy]
   before_action :create_deck, only: [:create, :update]
   def index

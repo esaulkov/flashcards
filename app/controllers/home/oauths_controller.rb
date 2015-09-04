@@ -1,4 +1,4 @@
-class Home::OauthsController < Home::ApplicationController
+class Home::OauthsController < Home::BaseController
   def oauth
     login_at(auth_params[:provider])
   end

@@ -1,4 +1,4 @@
-class Dashboard::DecksController < Dashboard::ApplicationController
+class Dashboard::DecksController < Dashboard::BaseController
   before_action :set_deck, except: [:index, :new, :create]
 
   def index

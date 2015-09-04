@@ -1,4 +1,4 @@
-class Home::SessionsController < Home::ApplicationController
+class Home::SessionsController < Home::BaseController
   def create
     if login(session_params[:email],
              session_params[:password],
