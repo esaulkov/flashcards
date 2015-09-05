@@ -1,0 +1,17 @@
+%h3= t :all_decks
+%table.table.table-striped
+  %thead
+    %tr
+      %th= t :name
+      %th= t :count_of_cards
+      %th{ colspan: "4" }
+  %tbody
+    - @decks.each do |deck|
+      %tr
+        %td= deck.name
+        %td= deck.cards.count
+        %td= deck.current? ? t(:current) : link_to(t(:make_current), set_current_dashboard_deck_path(deck), method: :put)
+        %td= link_to t(:show), dashboard_deck_path(deck)
+        %td= link_to t(:edit), edit_dashboard_deck_path(deck)
+        %td= link_to t(:delete), dashboard_deck_path(deck), method: :delete, data: { confirm: t(:delete_confirmation) }
+= link_to t(:add_deck), new_dashboard_deck_path

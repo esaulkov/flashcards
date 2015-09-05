@@ -4,12 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_locale
-  before_action :require_login
 
   private
 
   def not_authenticated
-    redirect_to log_in_path, alert: t(:not_authenticated)
+    redirect_to home_log_in_path, alert: t(:not_authenticated)
   end
 
   def set_locale

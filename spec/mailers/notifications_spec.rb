@@ -18,7 +18,7 @@ describe NotificationsMailer do
     end
 
     it "renders the review_card url" do
-      expect(mail.body.encoded).to match(new_review_url)
+      expect(mail.body.encoded).to match(new_dashboard_review_url)
     end
   end
 end

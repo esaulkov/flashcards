@@ -1,8 +1,0 @@
-.col-md-8
-  = simple_form_for deck do |f|
-    - deck_name = f.object.name || "#{t(:deck)} #{t(:number)}#{current_user.decks.count + 1}"
-    = f.input :name, 
-              input_html: { value: deck_name }
-    = f.button :submit
-    %br/
-    %br/

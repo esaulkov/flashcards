@@ -8,7 +8,7 @@ describe "Card form" do
   let!(:user) { create(:user, password: "abracadabra") }
 
   it "creates deck from card form" do
-    visit new_card_path
+    visit new_dashboard_card_path
     fill_in "Исходный текст", with: "Abracadabra"
     fill_in "Перевод текста", with: "Абракадабра"
     fill_in "Создать новую колоду", with: "Новая колода"

@@ -10,29 +10,29 @@ describe "Change current deck" do
   let!(:user) { create(:user, password: "abracadabra") }
 
   it "doesn't have current deck" do
-    visit decks_path
+    visit dashboard_decks_path
     expect(page).to_not have_content "Текущая"
   end
 
   it "changes current flag" do
-    visit decks_path
+    visit dashboard_decks_path
     click_link("Сделать текущей", match: :first)
-    visit decks_path
+    visit dashboard_decks_path
     expect(page).to have_content "Текущая"
   end
 
   it "has only one current deck" do
     user.update_attributes(current_deck: deck)
-    visit decks_path
+    visit dashboard_decks_path
     click_link("Сделать текущей")
-    visit decks_path
+    visit dashboard_decks_path
     expect(page).to have_content("Текущая", count: 1)
   end
 
   it "works with own decks" do
     second_user = create(:user, password: "secret")
     second_deck.update_attributes(user_id: second_user.id)
-    visit decks_path
+    visit dashboard_decks_path
     expect(page).to_not have_content "Вторая колода"
   end
 end

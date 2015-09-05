@@ -5,13 +5,13 @@ describe "User locale" do
 
   context "when didn't logged in" do
     it "sets russian language" do
-      visit log_in_path
+      visit home_log_in_path
       find(:xpath, "//a/img[@alt='ru']/..").click
       expect(page).to have_content "Вход в систему"
     end
 
     it "sets english language" do
-      visit log_in_path
+      visit home_log_in_path
       find(:xpath, "//a/img[@alt='en']/..").click
       expect(page).to have_content "Sign in"
     end
@@ -25,7 +25,7 @@ describe "User locale" do
     end
 
     it "sets language in user profile" do
-      visit edit_profile_path
+      visit edit_dashboard_profile_path
       select "ru", from: "profile_locale"
       fill_in "profile_password", with: "abracadabra"
       fill_in "profile_password_confirmation", with: "abracadabra"

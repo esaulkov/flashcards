@@ -10,7 +10,7 @@ describe "Review a card" do
   let!(:card) { create(:card, deck_id: deck.id) }
 
   context "check attributes" do
-    before(:each) { visit root_path }
+    before(:each) { visit dashboard_root_path }
 
     it "shows a translated text for card" do
       expect(page).to have_content "Достопримечательность"
@@ -27,12 +27,12 @@ describe "Review a card" do
     end
 
     it "shows a card with review_date less or equal today" do
-      visit root_path
+      visit dashboard_root_path
       expect(page).to have_content "Велосипед"
     end
     it "doesn't show the card with review_date greater today" do
       @second_card.update_attributes(review_date: DateTime.current + 1.day)
-      visit root_path
+      visit dashboard_root_path
       expect(page).to have_content "Непроверенных карточек нет"
     end
   end
@@ -40,12 +40,12 @@ describe "Review a card" do
   context "check deck" do
     it "shows a card if current deck is not defined" do
       @user.update_attributes(current_deck: nil)
-      visit root_path
+      visit dashboard_root_path
       expect(page).to have_content "Достопримечательность"
     end
     it "shows a card from current deck" do
       @user.update_attributes(current_deck: deck)
-      visit root_path
+      visit dashboard_root_path
       expect(page).to have_content "Достопримечательность"
     end
     it "doesn't show the card from other deck" do
@@ -53,13 +53,13 @@ describe "Review a card" do
       card.update_attributes(review_date: Date.today + 1.day)
       second_deck = create(:second_deck, user_id: @user.id)
       create(:second_card, deck_id: second_deck.id)
-      visit root_path
+      visit dashboard_root_path
       expect(page).to_not have_content "Велосипед"
     end
   end
 
   context "send an answer" do
-    before(:each) { visit root_path }
+    before(:each) { visit dashboard_root_path }
 
     it "shows success message if answer is right", js: true do
       fill_in "review_answer", with: "Sehenswürdigkeit"
@@ -104,7 +104,7 @@ describe "Review a card" do
       second_user = create(:user, password: "secret")
       second_deck = create(:deck, user_id: second_user.id)
       create(:second_card, deck_id: second_deck.id)
-      visit root_path
+      visit dashboard_root_path
       expect(page).to_not have_content "Велосипед"
     end
   end

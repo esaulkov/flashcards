@@ -11,7 +11,7 @@ checkAnswer = ->
   $('#review_form').submit (e) ->
     e.preventDefault()
     calculateTime(startTime)
-    sendRequest = $.post("reviews", $('#review_form').serialize(), null, "json")
+    sendRequest = $.post("dashboard/reviews", $('#review_form').serialize(), null, "json")
     sendRequest.done (data) ->
       if data.result
         $("#flash").empty().append(
@@ -26,7 +26,7 @@ checkAnswer = ->
           ).append(data.message)
         )
       if data.result || data.reload
-        $.get("reviews/new", null, null, "script")
+        $.get("dashboard/reviews/new", null, null, "script")
       $('#review_form').off("submit")
 
 $(document).ready ->
